@@ -38,6 +38,9 @@ and ignored
 --------------------
 CURRENT BUGS:
 --------------------
-not finished yet
-SEND HELP
+*currently does not accept multiple commands or any kind of connectors (!!)
+*can handle spaces but not tabs
+*i am an incompetent moron
+*not finished yet
+*SEND HELP
 
