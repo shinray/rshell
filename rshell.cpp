@@ -83,37 +83,16 @@ int main(int argc, char **argv)
 		{
 			char *cstylestring = new char[input.length()+1];
 			strcpy(cstylestring,input.c_str());
-			cstylestring = strtok(cstylestring,'#');
+			cstylestring = strtok(cstylestring, "#");
 			parse(cstylestring);
-			dostuff(cstylestring);
+			// I need some kind of thingy here, like an array of arrays.
+			char** commandQueue;
+			commandQueue = new char* [input.length()+1];
+			
+			dostuff(commandQueue);
 		}
 		connectorlist.clear();
 		argCount = 0;
-		/*unsigned int andcount = 0;
-		unsigned int orcount = 0;
-		for(unsigned int i = 0; i < strlen(cstylestring); ++i)
-		{
-			if (cstylestring[i] == '#')
-			{
-				cstylestring[i] == '\0';
-			}
-			if (cstylestring[i] == '&')
-			{
-				if (cstylestring[i+1] == '&')
-				{
-					++andcount;
-				}
-			}
-			if (cstylestring[i] == '|')
-			{
-				if (cstylestring[i+1] == '|')
-				{
-					++orcount;
-				}
-			}
-		}
-		char deliminators[] = ";&&||";
-		char* tokens = strtok_r(cstylestring, deliminators,);*/
 	}
 	return 0;
 }
