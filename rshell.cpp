@@ -10,6 +10,9 @@
 
 using namespace std;
 
+vector<int> connectorlist;
+int argCount = 0;
+
 void dostuff(char **argv)
 {
 	char *cmd =  argv[1];
@@ -36,8 +39,6 @@ void dostuff(char **argv)
 
 void parse(char* cmdstr)
 {
-	vector<int> connectorlist;
-	int argCount = 0;
 	bool alreadyWord = false;
 	for (unsigned i = 0; i < strlen(cmdstr); ++i)
 	{
@@ -84,8 +85,10 @@ int main(int argc, char **argv)
 			strcpy(cstylestring,input.c_str());
 			cstylestring = strtok(cstylestring,'#');
 			parse(cstylestring);
-			dostuff();
+			dostuff(cstylestring);
 		}
+		connectorlist.clear();
+		argCount = 0;
 		/*unsigned int andcount = 0;
 		unsigned int orcount = 0;
 		for(unsigned int i = 0; i < strlen(cstylestring); ++i)
