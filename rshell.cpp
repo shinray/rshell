@@ -1,13 +1,13 @@
 #include <iostream>
 #include <unistd.h>
 #include <stdio.h>
+#include <errno.h>
+#include <cstring>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <boost/tokenizer.hpp>
 
 using namespace std;
-
-void parse()
-{
-	
-}
 
 void dostuff(char **argv)
 {
@@ -42,6 +42,8 @@ int main(int argc, char **argv)
 		getline(cin,input);
 		char *cstylestring = new char[input.length()+1];
 		strcpy(cstylestring,input.c_str());
+		unsigned int andcount = 0;
+		unsigned int orcount = 0;
 		for(unsigned int i = 0; i < strlen(cstylestring); ++i)
 		{
 			if (cstylestring[i] == '#')
@@ -50,9 +52,21 @@ int main(int argc, char **argv)
 			}
 			if (cstylestring[i] == '&')
 			{
-				
+				if (cstylestring[i+1] == '&')
+				{
+					++andcount;
+				}
+			}
+			if (cstylestring[i] == '|')
+			{
+				if (cstylestring[i+1] == '|')
+				{
+					++orcount;
+				}
 			}
 		}
+		char deliminators[] = ";&&||";
+		char* tokens = strtok_r(cstylestring, deliminators,);
 	}
 	return 0;
 }
