@@ -23,6 +23,14 @@ void dostuff(char **argv)
 		if (execvp(cmd,argv) != 0)
 			perror("error in execvp");
 	}
+	else // parent
+	{
+		if (wait(0) != 0)
+		{
+			perror("waiting for child process");
+			exit(1);
+		}
+	}
 }
 
 int main(int argc, char **argv)
