@@ -1,0 +1,214 @@
+Script started on Sat 24 Jan 2015 06:51:05 AM PST
+~
+skuo004@hammer $ cd ..
+/class/classes
+skuo004@hammer $ cd t[Kma[K[K[K[K[Km,a[K[Kake
+make: *** No targets specified and no makefile found.  Stop.
+/class/classes
+skuo004@hammer $ ls
+ls: cannot open directory .: Permission denied
+/class/classes
+skuo004@hammer $ ls -a
+ls: cannot open directory .: Permission denied
+/class/classes
+skuo004@hammer $ cd cs100/hw1/rshell
+bash: cd: cs100/hw1/rshell: No such file or directory
+/class/classes
+skuo004@hammer $ csd[K[Kd ~/cs100/hw1/rshell/tests[K[K[K[K[K
+~/cs100/hw1/rshell
+skuo004@hammer $ make
+g++ -W -Wall -Werror -ansi -pedantic src/rshell.cpp -o bin/rshell
+~/cs100/hw1/rshell
+skuo004@hammer $ bin [K/rshell
+$ ls
+bin  LICENSE  Makefile	README.md  rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ ls[K[Kbin/rshell[K[K[K[K[K[K[K[K[K[Kmakecd ~/cs100/hw1/rshell/[3Pcs100/hw1/rshell[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls -a[K[K[K[K [K[K[Klsmakecd ..[3Plscd binombin/ls
+bash: bin/ls: No such file or directory
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/ls[K[Krshell
+$ ls  ;echo hi
+bin  LICENSE  Makefile	README.md  rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell[K[K[K[K[K[K[K[K[K[Kecho
+
+~/cs100/hw1/rshell
+skuo004@hammer $ echo he[K[K[K[K[K[K[Ki hate myself
+bash: i: command not found
+~/cs100/hw1/rshell
+skuo004@hammer $ echo [K[K[K[K[Ki hate myselfecho[Kbin/rshell
+$ ls -a
+.  ..  bin  .git  LICENSE  Makefile  README.md	rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshelli hate myself[3Pbin/rshell
+$ 
+$ ls -or    ||echo
+bin  LICENSE  Makefile	README.md  rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshelli hate myselfecho[Ki hate myself[3Pbin/rshell
+$ ls -  - &&echo
+bin  LICENSE  Makefile	README.md  rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell
+$ 			ls
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+fork failed: Resource temporarily unavailable
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshelli hate myself[3Pbin/rshell
+$      ls
+bin  LICENSE  Makefile	README.md  rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshelli hate myself[3Pbin/rshell[Kbin/rshell
+$ ls         a
+ls: cannot access a: No such file or directory
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell
+$ ls                -a
+.  ..  bin  .git  LICENSE  Makefile  README.md	rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshelli hate myself[3Pbin/rshell[Kls[K[Kls -[K[K
+ls        lsblk     lscpu     lshal     lslogins  lsof      lspcmcia  lsusb     
+lsattr    lscgroup  lsdiff    lsinitrd  lsmod     lspci     lssubsys  lsusb.py  
+~/cs100/hw1/rshell
+skuo004@hammer $ ls
+ls        lsblk     lscpu     lshal     lslogins  lsof      lspcmcia  lsusb     
+lsattr    lscgroup  lsdiff    lsinitrd  lsmod     lspci     lssubsys  lsusb.py  
+~/cs100/hw1/rshell
+skuo004@hammer $ ls 
+bin/       .git/      LICENSE    Makefile   README.md  rshell.o   src/       tests/     
+~/cs100/hw1/rshell
+skuo004@hammer $ ls [K[K[Ke[Kbin/rshell
+$ ls				-a
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+fork failed: Resource temporarily unavailable
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ #does not like tabs
+~/cs100/hw1/rshell
+skuo004@hammer $ #does not like tabs[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9Pbin/rshell
+$ ls #-a
+bin  LICENSE  Makefile	README.md  rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell
+$ echo # whoops #t test
+whoops
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell#does not like tabs[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9Pbin/rshelli hate myself[K[K[K[K[K[K[K[K[K[K[K[K[Kl[Kechobin/rshell
+$ ls #whoops -a
+bin  LICENSE  Makefile	README.md  rshell.o  src  tests
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell#does not like tabs[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kbin/rshell
+$ ls --a
+ls: option '--a' is ambiguous
+Try `ls --help' for more information.
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell[Kbin/rshell[Kbin/rshell
+$ -a
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+fork failed: Resource temporarily unavailable
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell
+$ exit
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell
+$ notcmd && ls
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+error in execvp: No such file or directory
+fork failed: Resource temporarily unavailable
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: No such file or directory
+waiting for child process: Success
+~/cs100/hw1/rshell
+skuo004@hammer $ bin/rshell
+$ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+$ ^[[A^[[A^[[B^[[B                ;
+$ #
+Segmentation fault
+~/cs100/hw1/rshell
+skuo004@hammer $ exit
+exit
+
+Script done on Sat 24 Jan 2015 06:59:54 AM PST
