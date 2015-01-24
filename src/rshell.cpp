@@ -15,14 +15,14 @@ int argCount = 0;
 
 void dostuff(char **todolist, int sz)
 {
-	unsigned count = 0;
+	int count = 0; // I need to stop randomly using unsigned it's mroe trouble than its worth
 	char **cmd;
-	cmd = new char *[argcount+1];
+	cmd = new char *[argCount+1];
 	
 	while (count != sz)
 	{
 		unsigned it = 0;
-		cmd[iterator] = strtok(todolist[count], " ");
+		cmd[it] = strtok(todolist[count], " ");
 		while (cmd[it] != NULL)
 		{
 			it++;
@@ -36,10 +36,11 @@ void dostuff(char **todolist, int sz)
 		}
 		else if (pid == 0) // child
 		{
-			if (execvp(currcmd[0],currcmd) != 0)
+			if (execvp(cmd[0],cmd) != 0)
 			{
 				perror("error in execvp");
 			}
+		}
 		else // parent
 		{
 			if (wait(0) != 0)
@@ -83,7 +84,7 @@ void parse(char* cmdstr)
 	}
 }
 
-int main(int argc, char **argv)
+int main()
 {
 	while (1)
 	{
