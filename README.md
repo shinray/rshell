@@ -1,4 +1,5 @@
 # rshell
+oh god how did this get here i am not good with computer
 =================================
 rshell Overview
 =================================
@@ -30,9 +31,9 @@ How to use
 * anything after '#' should be considered a comment
 and ignored
 * multiple commands can be input at once using:
-	> 1. ls ; echo (will run ls followed by echo)
-	> 2. ls && echo (will attempt to run ls; echo will run iff ls is successful)
-	> 3. ls || echo (will attempt to run ls; echo will run iff ls fails)
+	1. ls ; echo (will run ls followed by echo)
+	2. ls && echo (will attempt to run ls; echo will run iff ls is successful)
+	3. ls || echo (will attempt to run ls; echo will run iff ls fails)
 
 --------------------
 CURRENT BUGS:
