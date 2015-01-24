@@ -13,26 +13,41 @@ using namespace std;
 vector<int> connectorlist;
 int argCount = 0;
 
-void dostuff(char **argv)
+void dostuff(char **todolist, int sz)
 {
-	char *cmd =  argv[1];
-	int pid = fork();
-	if (pid == -1)
+	unsigned count = 0;
+	char **cmd;
+	cmd = new char *[argcount+1];
+	
+	while (count != sz)
 	{
-		perror("fork failed");
-		exit(1);
-	}
-	else if (pid == 0) // child
-	{
-		if (execvp(cmd,argv) != 0)
-			perror("error in execvp");
-	}
-	else // parent
-	{
-		if (wait(0) != 0)
+		unsigned it = 0;
+		cmd[iterator] = strtok(todolist[count], " ");
+		while (cmd[it] != NULL)
 		{
-			perror("waiting for child process");
+			it++;
+			cmd[it] = strtok(NULL, " ");
+		}
+		int pid = fork();
+		if (pid == -1)
+		{
+			perror("fork failed");
 			exit(1);
+		}
+		else if (pid == 0) // child
+		{
+			if (execvp(currcmd[0],currcmd) != 0)
+			{
+				perror("error in execvp");
+			}
+		else // parent
+		{
+			if (wait(0) != 0)
+			{
+				perror("waiting for child process");
+				exit(1);
+			}
+			count++;
 		}
 	}
 }
@@ -88,8 +103,14 @@ int main(int argc, char **argv)
 			// I need some kind of thingy here, like an array of arrays.
 			char** commandQueue;
 			commandQueue = new char* [input.length()+1];
-			
-			dostuff(commandQueue);
+			int size = 0;
+			commandQueue[size] = strtok(cstylestring, ";|&");
+			while(commandQueue[size] != NULL)
+			{
+				++size;
+				commandQueue[size] = strtok(NULL, ";|&");
+			}
+			dostuff(commandQueue, size);
 		}
 		connectorlist.clear();
 		argCount = 0;
