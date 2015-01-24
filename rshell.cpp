@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <boost/tokenizer.hpp>
+#include <vector>
 
 using namespace std;
 
@@ -33,6 +34,39 @@ void dostuff(char **argv)
 	}
 }
 
+void parse(char* cmdstr)
+{
+	vector<int> connectorlist;
+	int argCount = 0;
+	bool alreadyWord = false;
+	for (unsigned i = 0; i < strlen(cmdstr); ++i)
+	{
+		if (cmdstr[i] == ';')
+		{
+			connectorlist.push_back(3);
+		}
+		else if (cmdstr[i] == '|' && cmdstr[i+1] == '|')
+		{
+			i++;
+			connectorlist.push_back(6);
+		}
+		else if (cmdstr[i] == '&' && cmdstr[i+1] == '&')
+		{
+			i++;
+			connectorlist.push_back(9);
+		}
+		else if (cmdstr[i] == ' ')
+		{
+			alreadyWord = false;
+		}
+		else if (cmdstr[i] != ' ' && !alreadyWord)
+		{
+			alreadyWord = true;
+			argCount++;
+		}
+	}
+}
+
 int main(int argc, char **argv)
 {
 	while (1)
@@ -40,9 +74,19 @@ int main(int argc, char **argv)
 		string input;
 		cout << "$ ";
 		getline(cin,input);
-		char *cstylestring = new char[input.length()+1];
-		strcpy(cstylestring,input.c_str());
-		unsigned int andcount = 0;
+		if (input == "exit")
+		{
+			exit(0);
+		}
+		if (!input.empty())
+		{
+			char *cstylestring = new char[input.length()+1];
+			strcpy(cstylestring,input.c_str());
+			cstylestring = strtok(cstylestring,'#');
+			parse(cstylestring);
+			dostuff();
+		}
+		/*unsigned int andcount = 0;
 		unsigned int orcount = 0;
 		for(unsigned int i = 0; i < strlen(cstylestring); ++i)
 		{
@@ -66,7 +110,7 @@ int main(int argc, char **argv)
 			}
 		}
 		char deliminators[] = ";&&||";
-		char* tokens = strtok_r(cstylestring, deliminators,);
+		char* tokens = strtok_r(cstylestring, deliminators,);*/
 	}
 	return 0;
 }
