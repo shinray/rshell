@@ -1,5 +1,5 @@
-FLAGS = -g -W -Wall -Werror -ansi -pedantic
-
+FLAGS = -g -W -Wall -ansi -pedantic
+#-Werror
 all: rshell ls | bin
 
 rshell: | bin
