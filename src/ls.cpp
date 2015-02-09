@@ -1,4 +1,5 @@
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <dirent.h>
 #include <errno.h>
 #include <stdio.h>
@@ -8,6 +9,8 @@
 #include <vector>
 #include <time.h>
 #include <libgen.h>
+#include <cstdio>
+#include <unistd.h>
 
 #include <iostream>
 
@@ -26,7 +29,7 @@ bool aflag = false, lflag = false, Rflag = false; */
 void checkargs(int argcc, char **argvv, vector<*char> &vfiles, vector<*char> &vdirs, bool &aflag, bool &lflag, bool &Rflag)
 {
 	//int numflags = 0; // this actually should count the nonflags aka "files"
-	for (unsigned i = 1; i < argcc; i++)
+	for (int i = 1; i < argcc; i++)
 	{
 		char *currstring = argvv[i];
 		if (currstring[0] == '-')
