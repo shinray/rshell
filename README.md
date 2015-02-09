@@ -44,5 +44,5 @@ CURRENT BUGS:
 *not finished yet
 *SEND HELP
 *NEW: added own ls function
-*ls function currently does not compile
 *ls function does not yet have support for -R
+*ls function currently only works with current directory (aka bin/ls)
