@@ -1,9 +1,16 @@
-FLAGS = -W -Wall -Werror -ansi -pedantic
+FLAGS = -g -W -Wall -Werror -ansi -pedantic
 
-all: rshell
+all: rshell ls | bin
 
-rshell: rshell.o
+rshell: | bin
+	if 
 	g++ $(FLAGS) src/rshell.cpp -o bin/rshell
+
+ls:	| bin
+	g++ $(FLAGS) src/ls.cpp -o bin/ls
+	
+bin:
+	mkdir bin
 
 clean:
 	rm -rf bin
