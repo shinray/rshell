@@ -1,4 +1,4 @@
-# rshell
+# rshell v0.2
 oh god how did this get here i am not good with computer
 =================================
 rshell Overview
@@ -43,4 +43,6 @@ CURRENT BUGS:
 *i am an incompetent moron
 *not finished yet
 *SEND HELP
-
+*NEW: added own ls function
+*ls function currently does not compile
+*ls function does not yet have support for -R
