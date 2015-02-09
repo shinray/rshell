@@ -252,7 +252,8 @@ int main(int argc, char *argv[])
 	
 	checkargs(argc, argv, vfiles, vdirs, is_hidden, is_long, is_recursive);
 	
-	(is_long) ? printlong("." ,is_recursive, is_hidden, true) : print();
+	char dirName[] = ".";
+	(is_long) ? printlong(dirName, is_recursive, is_hidden, true) : print(dirName, is_recursive, is_hidden, true);
 	
 	/* char *dirName = ".";
 	DIR *dirp = opendir(dirName);
