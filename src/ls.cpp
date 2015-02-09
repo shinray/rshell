@@ -128,6 +128,7 @@ void print(char *dir, bool recursion, bool showhidden, bool first) // ls without
 		perror("closedir"); //always call perror!
 		exit(1);
 	}
+	cout << endl;
 }
 
 void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls with -l
