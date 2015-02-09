@@ -11,6 +11,8 @@
 #include <libgen.h>
 #include <cstdio>
 #include <unistd.h>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include <iostream>
 
@@ -86,7 +88,7 @@ void print(char *dir, bool recursion, bool showhidden, bool first) // ls without
 		string currfile(direntp->d_name);
 		if (!showhidden) // -a flag
 		{
-			if (currfile.front() == "." || currfile.front() == "..") // ignore . and ..
+			if (boost::starts_with(currfile, ".") || boost::starts_with(currfile, "..")) // ignore . and ..
 			{
 				continue; // skips this iteration
 			}
@@ -189,7 +191,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 		cout << setw(max_gid_len + 1);
 		// group of file (anyone who is in this group can do this)
 		struct group *gp = getgrgid(statbuf.st_gid); // syscall
-		if (*gp == NULL)
+		if (gp == NULL)
 		{
 			perror("getgrgid"); // perror
 			exit(1);
@@ -205,7 +207,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 		
 		//cout << ' ';
 		// date modified st_mtime
-		cout << ' ' << ctime(statbuf.st_mtime);
+		cout << ' ' << ctime(&statbuf.st_mtime);
 		
 		cout << ' ';
 		// name of the file
