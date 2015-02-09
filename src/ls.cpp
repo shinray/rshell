@@ -6,6 +6,8 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <time.h>
+#include <libgen.h>
 
 #include <iostream>
 
@@ -164,11 +166,11 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 		cout << ((statbuf.st_mode & S_IWOTH) ? 'w' : '-');
 		cout << ((statbuf.st_mode & S_IXOTH) ? 'x' : '-');
 		
-		cout << ' ';
+		cout << setw(max_nlink_len + 1);
 		// number of links
 		cout << statbuf.st_nlink;
 		
-		cout << ' ';
+		cout << setw(max_uid_len + 1);
 		// name of file owner
 		struct passwd *pw = getpwuid(statbuf.st_uid); //syscall
 		if (pw == NULL)
@@ -181,7 +183,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			cout << pw->pw_name;
 		}
 		
-		cout << ' ';
+		cout << setw(max_gid_len + 1);
 		// group of file (anyone who is in this group can do this)
 		struct group *gp = getgrgid(statbuf.st_gid); // syscall
 		if (*gp == NULL)
@@ -194,18 +196,18 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			cout << gp->gr_name;
 		}
 		
-		cout << ' ';
+		cout << setw(max_size_len + 1);
 		// file size in bytes
 		cout << statbuf.st_size;
 		
-		cout << ' ';
+		//cout << ' ';
 		// date modified st_mtime
+		cout << ' ' << ctime(statbuf.st_mtime);
 		
 		cout << ' ';
 		// name of the file
-		
-		cout <<;
-		cout << '\n';
+		cout << basename(dir);
+		cout << endl;
 	}
 	if (errno != 0)
 	{
@@ -242,6 +244,7 @@ int main(int argc, char **argv)
 	
 	checkargs(argc, argv, vfiles, vdirs, is_hidden, is_long, is_recursive);
 	
+	(is_long) ? printlong("." ,is_recursive, is_hidden, true) : print();
 	
 	/* char *dirName = ".";
 	DIR *dirp = opendir(dirName);
@@ -249,4 +252,5 @@ int main(int argc, char **argv)
 	while ((direntp == readdir(dirp)))
 		cout << direntp->d_name << endl;	// use stat here to find attributes of file
 	closedir(dirp); */
+	return 0;
 }
