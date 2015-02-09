@@ -66,18 +66,74 @@ void checkargs(int argcc, char **argvv, vector<*char> &vfiles, vector<*char> &vd
 	}
 }
 
-void printlong(vector<*char> &files, vector<*char> &stats)
-{
-	
-}
-
 void print(char *dir)
 {
-	DIR *dirp = opendir(dir);
+	DIR *dirp = opendir(dir); // opendir
 	if (dirp == NULL)
 	{
 		cerr << dir << ':';
-		perror("print: opendir");]
+		perror("print: opendir"); // perror!
+		exit(1);
+	}
+	dirent *direntp;
+	while ((direntp = readdir(dirp)))
+	{
+		errno = 0; // ensure errors are a result of readdir
+		string currfile(direntp->d_name);
+		if (currfile == "." || currfile == "..") // ignore . and ..
+		{
+			continue; // skips this iteration
+		}
+		cout << currfile;
+		if (direntp->d_type & DT_DIR) // bitwise AND to check if it's a dir
+		{
+			cout << '/';
+		}
+		cout << '\t';
+	}
+	if (errno != 0)
+	{
+		perror("error reading directory"); //perror for readdir
+	}
+	if (closedir(dirp) == -1) // closedir for every opendir
+	{
+		perror("closedir"); //always call perror!
+		exit(1);
+	}
+}
+
+void printlong(char *dir)
+{
+	DIR *dirp = opendir(dir); // opendir
+	if (dirp == NULL)
+	{
+		cerr << dir << ':';
+		perror("print: opendir"); // perror!
+		exit(1);
+	}
+	dirent *direntp;
+	while ((direntp = readdir(dirp)))
+	{
+		errno = 0; // ensure errors are a result of readdir
+		string currfile(direntp->d_name);
+		if (currfile == "." || currfile == "..") // ignore . and ..
+		{
+			continue; // skips this iteration
+		}
+		cout << currfile;
+		if (direntp->d_type & DT_DIR) // bitwise AND to check if it's a dir
+		{
+			cout << '/';
+		}
+		cout << '\t';
+	}
+	if (errno != 0)
+	{
+		perror("error reading directory"); //perror for readdir
+	}
+	if (closedir(dirp) == -1) // closedir for every opendir
+	{
+		perror("closedir"); //always call perror!
 		exit(1);
 	}
 }
@@ -89,21 +145,11 @@ int main(int argc, char **argv)
 	
 	checkargs(argc, argv, vfiles, vdirs, is_hidden, is_long, is_recursive);
 	
-	if (is_long && !vfiles.empty())
-	{
-		printlong(vfiles, vfile_stats);
-	}
-	else
-	{
-		for(auto i: vfiles)
-		{
-		}
-	}
 	
-	char *dirName = ".";
+	/* char *dirName = ".";
 	DIR *dirp = opendir(dirName);
 	dirent *direntp;
 	while ((direntp == readdir(dirp)))
 		cout << direntp->d_name << endl;	// use stat here to find attributes of file
-	closedir(dirp);
+	closedir(dirp); */
 }
