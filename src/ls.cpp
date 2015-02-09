@@ -138,7 +138,29 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			perror("printlong: stat"); //perror
 			exit(1);
 		}
-		cout << statbuf.st_si
+		if (statbuf.st_mode & S_ISLNK)
+		{
+			cout << 'l';
+		}
+		else if (statbuf.st_mode & S_ISDIR)
+		{
+			cout << 'd';
+		}
+		else//else if (statbuf.st_mode & S_ISREG)
+		{
+			cout << '-';
+		}
+		cout << ((statbuf.st_mode & S_IRUSR) ? 'r' : '-');
+		cout << ((statbuf.st_mode & S_IWUSR) ? 'w' : '-');
+		cout << ((statbuf.st_mode & S_IXUSR) ? 'x' : '-');
+		
+		cout << ((statbuf.st_mode & S_IRGRP) ? 'r' : '-');
+		cout << ((statbuf.st_mode & S_IWGRP) ? 'w' : '-');
+		cout << ((statbuf.st_mode & S_IXGRP) ? 'x' : '-');
+		
+		cout << ((statbuf.st_mode & S_IROTH) ? 'r' : '-');
+		cout << ((statbuf.st_mode & S_IWOTH) ? 'w' : '-');
+		cout << ((statbuf.st_mode & S_IXOTH) ? 'x' : '-');
 	}
 	if (errno != 0)
 	{
