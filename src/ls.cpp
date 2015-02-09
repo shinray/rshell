@@ -149,11 +149,11 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			exit(1);
 		}
 		// this is the permissions field
-		if (statbuf.st_mode & S_ISLNK)
+		if (S_ISLNK(statbuf.st_mode))
 		{
 			cout << 'l'; // link
 		}
-		else if (statbuf.st_mode & S_ISDIR)
+		else if (S_ISDIR(statbuf.st_mode))
 		{
 			cout << 'd'; // directory
 		}
