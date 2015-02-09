@@ -1,5 +1,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <pwd.h>
+#include <grp.h>
 #include <dirent.h>
 #include <errno.h>
 #include <stdio.h>
@@ -15,6 +17,7 @@
 #include <boost/lexical_cast.hpp>
 
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -171,11 +174,11 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 		cout << ((statbuf.st_mode & S_IWOTH) ? 'w' : '-');
 		cout << ((statbuf.st_mode & S_IXOTH) ? 'x' : '-');
 		
-		cout << setw(max_nlink_len + 1);
+		cout << ' ';
 		// number of links
 		cout << statbuf.st_nlink;
 		
-		cout << setw(max_uid_len + 1);
+		cout << ' ';
 		// name of file owner
 		struct passwd *pw = getpwuid(statbuf.st_uid); //syscall
 		if (pw == NULL)
@@ -188,7 +191,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			cout << pw->pw_name;
 		}
 		
-		cout << setw(max_gid_len + 1);
+		cout << ' ';
 		// group of file (anyone who is in this group can do this)
 		struct group *gp = getgrgid(statbuf.st_gid); // syscall
 		if (gp == NULL)
@@ -201,7 +204,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			cout << gp->gr_name;
 		}
 		
-		cout << setw(max_size_len + 1);
+		cout << setw(7) << right;
 		// file size in bytes
 		cout << statbuf.st_size;
 		
@@ -218,7 +221,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 	{
 		perror("error reading directory");
 	}
-	if (closedir(dirpl) == -1)
+	if (closedir(dirp) == -1)
 	{
 		perror("closedir");
 		exit(1);
