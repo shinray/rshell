@@ -66,12 +66,11 @@ void checkargs(int argcc, char **argvv, vector<*char> &vfiles, vector<*char> &vd
 	}
 }
 
-void print(char *dir)
+void print(char *dir, bool recursion, bool showhidden, bool first) // ls without -l
 {
 	DIR *dirp = opendir(dir); // opendir
 	if (dirp == NULL)
 	{
-		cerr << dir << ':';
 		perror("print: opendir"); // perror!
 		exit(1);
 	}
@@ -80,12 +79,31 @@ void print(char *dir)
 	{
 		errno = 0; // ensure errors are a result of readdir
 		string currfile(direntp->d_name);
-		if (currfile == "." || currfile == "..") // ignore . and ..
+		if (!showhidden) // -a flag
 		{
-			continue; // skips this iteration
+			if (currfile.front() == "." || currfile.front() == "..") // ignore . and ..
+			{
+				continue; // skips this iteration
+			}
 		}
+		bool isdir = (direntp->d_type & DT_DIR); // bitwise AND to check if it's a dir
+		/* if (recursion)
+		{
+			cout << '.';
+			if (!first)
+			{
+				cout << dir;
+			}
+			cout << ":\n";
+			if (isdir)
+			{
+				string path = dir + "/" + currfile;
+				print(path.c_str(), recursion, showhidden, false);
+				cout << '\n' << endl;
+			}
+		} */
 		cout << currfile;
-		if (direntp->d_type & DT_DIR) // bitwise AND to check if it's a dir
+		if (isdir)
 		{
 			cout << '/';
 		}
@@ -102,40 +120,52 @@ void print(char *dir)
 	}
 }
 
-void printlong(char *dir)
+void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls with -l
 {
-	DIR *dirp = opendir(dir); // opendir
+	DIR *dirp = opendir(dir);
 	if (dirp == NULL)
 	{
-		cerr << dir << ':';
-		perror("print: opendir"); // perror!
+		perror("printlong: opendir");
 		exit(1);
 	}
 	dirent *direntp;
-	while ((direntp = readdir(dirp)))
+	struct stat statbuf;
+	while((direntp = readdir(dirp)))
 	{
-		errno = 0; // ensure errors are a result of readdir
-		string currfile(direntp->d_name);
-		if (currfile == "." || currfile == "..") // ignore . and ..
+		errno = 0;
+		if (stat(direntp->d_name, &statbuf) == -1) //syscall
 		{
-			continue; // skips this iteration
+			perror("printlong: stat"); //perror
+			exit(1);
 		}
-		cout << currfile;
-		if (direntp->d_type & DT_DIR) // bitwise AND to check if it's a dir
-		{
-			cout << '/';
-		}
-		cout << '\t';
+		cout << statbuf.st_si
 	}
 	if (errno != 0)
 	{
-		perror("error reading directory"); //perror for readdir
+		perror("error reading directory");
 	}
-	if (closedir(dirp) == -1) // closedir for every opendir
+	if (closedir(dirpl) == -1)
 	{
-		perror("closedir"); //always call perror!
+		perror("closedir");
 		exit(1);
 	}
+	
+	/* int count = scandir();
+	if (count == -1)
+	{
+		perror("printlong: scandir");
+	}
+	else
+	{
+		if (count > 0)
+		{
+			cout << "total: " << count << '\n';
+			for (unsigned i = 0; i < count; i++)
+			{
+				if (stat(files[i]->d_name, &statbuf) == 0)
+			}
+		}
+	} */
 }
 
 int main(int argc, char **argv)
