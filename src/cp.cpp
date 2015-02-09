@@ -108,7 +108,7 @@ int main(int argc, char **argv)
         perror("stat:arg1");
         exit(1);
     }
-    if ((stat(argv[2],&s)!=0) || S_ISDIR(s.st_mode))
+    if ((stat(argv[2],&s)==0) || S_ISDIR(s.st_mode))
     {
         std::cerr << "invalid arg2";
         perror("stat:arg2");
