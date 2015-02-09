@@ -138,29 +138,74 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			perror("printlong: stat"); //perror
 			exit(1);
 		}
+		// this is the permissions field
 		if (statbuf.st_mode & S_ISLNK)
 		{
-			cout << 'l';
+			cout << 'l'; // link
 		}
 		else if (statbuf.st_mode & S_ISDIR)
 		{
-			cout << 'd';
+			cout << 'd'; // directory
 		}
 		else//else if (statbuf.st_mode & S_ISREG)
 		{
-			cout << '-';
+			cout << '-'; // regular file
 		}
+		//user permissions rwx
 		cout << ((statbuf.st_mode & S_IRUSR) ? 'r' : '-');
 		cout << ((statbuf.st_mode & S_IWUSR) ? 'w' : '-');
 		cout << ((statbuf.st_mode & S_IXUSR) ? 'x' : '-');
-		
+		//group permissions rwx
 		cout << ((statbuf.st_mode & S_IRGRP) ? 'r' : '-');
 		cout << ((statbuf.st_mode & S_IWGRP) ? 'w' : '-');
 		cout << ((statbuf.st_mode & S_IXGRP) ? 'x' : '-');
-		
+		//other permissions rwx
 		cout << ((statbuf.st_mode & S_IROTH) ? 'r' : '-');
 		cout << ((statbuf.st_mode & S_IWOTH) ? 'w' : '-');
 		cout << ((statbuf.st_mode & S_IXOTH) ? 'x' : '-');
+		
+		cout << ' ';
+		// number of links
+		cout << statbuf.st_nlink;
+		
+		cout << ' ';
+		// name of file owner
+		struct passwd *pw = getpwuid(statbuf.st_uid); //syscall
+		if (pw == NULL)
+		{
+			perror("getpwuid"); // perror
+			exit(1);
+		}
+		else
+		{
+			cout << pw->pw_name;
+		}
+		
+		cout << ' ';
+		// group of file (anyone who is in this group can do this)
+		struct group *gp = getgrgid(statbuf.st_gid); // syscall
+		if (*gp == NULL)
+		{
+			perror("getgrgid"); // perror
+			exit(1);
+		}
+		else
+		{
+			cout << gp->gr_name;
+		}
+		
+		cout << ' ';
+		// file size in bytes
+		cout << statbuf.st_size;
+		
+		cout << ' ';
+		// date modified st_mtime
+		
+		cout << ' ';
+		// name of the file
+		
+		cout <<;
+		cout << '\n';
 	}
 	if (errno != 0)
 	{
