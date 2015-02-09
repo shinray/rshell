@@ -31,7 +31,7 @@ using namespace std;
 bool aflag = false, lflag = false, Rflag = false; */
 
 /* searches argv for flags, returns a quick flagcount */
-void checkargs(int argcc, char *argvv[], vector<*char> &vfiles, vector<*char> &vdirs, bool &aflag, bool &lflag, bool &Rflag)
+void checkargs(int argcc, char *argvv[], vector<char*> &vfiles, vector<char*> &vdirs, bool &aflag, bool &lflag, bool &Rflag)
 {
 	//int numflags = 0; // this actually should count the nonflags aka "files"
 	for (int i = 1; i < argcc; i++)
@@ -247,7 +247,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 
 int main(int argc, char *argv[])
 {
-	vector<*char> vfiles, vfile_stats, vdirs;
+	vector<char*> vfiles, vfile_stats, vdirs;
 	bool is_hidden = false, is_long = false, is_recursive = false;
 	
 	checkargs(argc, argv, vfiles, vdirs, is_hidden, is_long, is_recursive);
