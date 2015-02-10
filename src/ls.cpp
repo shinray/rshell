@@ -77,7 +77,7 @@ void checkargs(int argcc, char *argvv[], vector<char*> &vfiles, vector<char*> &v
 	}
 }
 
-void print(const char *dir, bool recursion, bool showhidden, bool first, stringstream &sp) // ls without -l
+/* void print(const char *dir, bool recursion, bool showhidden, bool first, stringstream &sp) // ls without -l
 {
 	DIR *dirp = opendir(dir); // opendir
 	if (dirp == NULL)
@@ -100,7 +100,7 @@ void print(const char *dir, bool recursion, bool showhidden, bool first, strings
 		bool isdir = (direntp->d_type & DT_DIR); // bitwise AND to check if it's a dir
 		if (recursion)
 		{
-			/* if (first)
+			if (first)
 			{
 				cout << dir << ":\n";
 				cout << currfile;
@@ -109,7 +109,7 @@ void print(const char *dir, bool recursion, bool showhidden, bool first, strings
 					cout << '/';
 				}
 				cout << "  ";
-			} */
+			}
 			if (isdir)
 			{
 				// cout << dir << ":\n";
@@ -151,7 +151,74 @@ void print(const char *dir, bool recursion, bool showhidden, bool first, strings
 		exit(1);
 	}
 	cout << endl;
+} */
+
+void print(const char *path, bool recursion, bool &showhidden) // ls without -l
+{
+    DIR *dirp = opendir(path); // opendir
+    if(dirp == NULL) 
+	{
+        perror("print: opendir"); // perror!
+		cerr << path << endl;
+        exit(1);
+    }
+    struct dirent *direntp;
+	string stringbuff;
+	cout << "/" << path << ":\n";
+    while ((direntp = readdir(dirp)))
+	{
+		errno = 0; // ensure errors are a result of readdir
+		string currfile(direntp->d_name);
+		if (showhidden || (!boost::starts_with(currfile, ".")))
+		{
+			cout << currfile << "  ";
+		}
+	}
+	if (errno != 0)
+	{
+		perror("error reading directory"); //perror for readdir
+	}
+	cout << '\n' << '\n';
+    if (closedir(dirp) == -1) // closedir for every opendir
+	{
+		perror("closedir"); //always call perror!
+		exit(1);
+	}
+    dirp = opendir(path); // opendir
+	if(dirp == NULL) 
+	{
+        perror("print: opendir"); // perror!
+        exit(1);
+    }
+    while((direntp = readdir(dirp)))
+	{
+		errno = 0; // ensure errors are a result of readdir
+		string currfile(direntp->d_name);
+		if (strcmp(direntp->d_name, ".") == 0 || (strcmp(direntp->d_name, "..") == 0))
+		{
+			continue;
+		}
+		if (showhidden || (!boost::starts_with(currfile, ".")))
+		{
+			
+			if(recursion && direntp->d_type == 4) // easier than S_ISDIR tbh
+			{
+				stringbuff = path + '/' + string(direntp->d_name); // can't go deeper than 1 dir???
+				print(stringbuff.c_str(), true, showhidden);
+			}
+		}
+	}
+	if (errno != 0)
+	{
+		perror("error reading directory"); //perror for readdir
+	}
+    if (closedir(dirp) == -1) // closedir for every opendir
+	{
+		perror("closedir"); //always call perror!
+		exit(1);
+	}
 }
+
 
 void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls with -l
 {
@@ -163,11 +230,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 	}
 	dirent *direntp;
 	struct stat statbuf;
-	/* if ((stat(dir, &statbuf)) == -1)
-	{
-		perror("printlong:stat");
-		exit(1);
-	} */
+
 	int blocktotal = 0;
 	stringstream ss;
 	while((direntp = readdir(dirp)))
@@ -273,17 +336,10 @@ int main(int argc, char *argv[])
 	bool is_hidden = false, is_long = false, is_recursive = false;
 	
 	checkargs(argc, argv, vfiles, vdirs, is_hidden, is_long, is_recursive);
-	//if (vfiles.empty()||vdirs.empty())
-	//{
+
 	char dirName[] = ".";
-	stringstream ssb;
-	(is_long) ? printlong(dirName, is_recursive, is_hidden, true) : print(dirName, is_recursive, is_hidden, true, ssb);
-	//}
-	/* char *dirName = ".";
-	DIR *dirp = opendir(dirName);
-	dirent *direntp;
-	while ((direntp == readdir(dirp)))
-		cout << direntp->d_name << endl;	// use stat here to find attributes of file
-	closedir(dirp); */
+	//(is_long) ? printlong(dirName, is_recursive, is_hidden, true) : print(dirName, is_recursive, is_hidden, true);
+	(is_long) ? printlong(dirName, is_recursive, is_hidden, true) : print(dirName, is_recursive, is_hidden);
+
 	return 0;
 }
