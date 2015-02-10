@@ -141,12 +141,12 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 	}
 	dirent *direntp;
 	struct stat statbuf;
-	/* if ((stat(dir, &statbuf)) == -1)
+	if ((stat(dir, &statbuf)) == -1)
 	{
 		perror("printlong:stat");
 		exit(1);
 	}
-	cout << "total: " << statbuf.st_blocks << '\n'; */
+	cout << "total: " << statbuf.st_blocks << '\n';
 	while((direntp = readdir(dirp)))
 	{
 		errno = 0;
