@@ -44,7 +44,6 @@ CURRENT BUGS:
 * not finished yet
 * SEND HELP
 * NEW: added own ls function
-* ls function does not yet have support for -R
+* ls function does not yet have support for -R UPDATE: experimental support for -R and -aR (crashes on directories more than 1 deep)
 * ls function currently only works with current directory (aka bin/ls)
 * ls files are not quite sorted in any order yet (or at least not the same order as in the official ls)
-* "total" returns a different number of blocks/may be disabled since it's wrong anyway
