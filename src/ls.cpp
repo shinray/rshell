@@ -205,13 +205,15 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			cout << gp->gr_name;
 		}
 		
-		cout << setw(7) << right;
+		cout << setw(6) << right;
 		// file size in bytes
 		cout << statbuf.st_size;
 		
-		//cout << ' ';
 		// date modified st_mtime
-		cout << ' ' << ctime(&statbuf.st_mtime);
+		string timey = ctime(&statbuf.st_mtime);
+		timey.erase(timey.begin()+24);
+		timey.erase(0,3);
+		cout << ' ' << timey;
 		
 		cout << ' ';
 		// name of the file
