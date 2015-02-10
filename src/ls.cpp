@@ -77,7 +77,7 @@ void checkargs(int argcc, char *argvv[], vector<char*> &vfiles, vector<char*> &v
 	}
 }
 
-void print(char *dir, bool recursion, bool showhidden, bool first) // ls without -l
+void print(const char *dir, bool recursion, bool showhidden, bool first) // ls without -l
 {
 	DIR *dirp = opendir(dir); // opendir
 	if (dirp == NULL)
@@ -98,27 +98,30 @@ void print(char *dir, bool recursion, bool showhidden, bool first) // ls without
 			}
 		}
 		bool isdir = (direntp->d_type & DT_DIR); // bitwise AND to check if it's a dir
-		/* if (recursion)
+		if (recursion)
 		{
-			cout << '.';
-			if (!first)
-			{
-				cout << dir;
-			}
-			cout << ":\n";
+			//if (!first)
+			//{
+			//	cout << dir;
+			//}
+			//cout << ":\n";
 			if (isdir)
 			{
-				string path = dir + "/" + currfile;
+				cout << dir << ":\n";
+				string path = dir + '/' + currfile;
 				print(path.c_str(), recursion, showhidden, false);
 				cout << '\n' << endl;
 			}
-		} */
-		cout << currfile;
-		if (isdir)
-		{
-			cout << '/';
 		}
-		cout << "  ";
+		else
+		{
+			cout << currfile;
+			if (isdir)
+			{
+				cout << '/';
+			}
+			cout << "  ";
+		}
 	}
 	if (errno != 0)
 	{
