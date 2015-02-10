@@ -215,7 +215,7 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 		
 		cout << ' ';
 		// name of the file
-		cout << basename(dir);
+		cout << direntp->d_name;
 		cout << endl;
 	}
 	if (errno != 0)
