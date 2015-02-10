@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <string.h>
+#include <sstream>
 #include <string>
 #include <algorithm>
 #include <vector>
@@ -141,12 +142,13 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 	}
 	dirent *direntp;
 	struct stat statbuf;
-	if ((stat(dir, &statbuf)) == -1)
+	/* if ((stat(dir, &statbuf)) == -1)
 	{
 		perror("printlong:stat");
 		exit(1);
-	}
-	cout << "total: " << statbuf.st_blocks << '\n';
+	} */
+	int blocktotal = 0;
+	stringstream ss;
 	while((direntp = readdir(dirp)))
 	{
 		errno = 0;
@@ -155,37 +157,42 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 			perror("printlong: stat"); //perror
 			exit(1);
 		}
+		blocktotal += statbuf.st_blocks / 2;
+		if (!showhidden && (boost::starts_with(direntp->d_name, ".")))
+		{
+			continue;
+		}
 		// this is the permissions field
 		if (S_ISLNK(statbuf.st_mode))
 		{
-			cout << 'l'; // link
+			ss << 'l'; // link
 		}
 		else if (S_ISDIR(statbuf.st_mode))
 		{
-			cout << 'd'; // directory
+			ss << 'd'; // directory
 		}
 		else//else if (statbuf.st_mode & S_ISREG)
 		{
-			cout << '-'; // regular file
+			ss << '-'; // regular file
 		}
 		//user permissions rwx
-		cout << ((statbuf.st_mode & S_IRUSR) ? 'r' : '-');
-		cout << ((statbuf.st_mode & S_IWUSR) ? 'w' : '-');
-		cout << ((statbuf.st_mode & S_IXUSR) ? 'x' : '-');
+		ss << ((statbuf.st_mode & S_IRUSR) ? 'r' : '-');
+		ss << ((statbuf.st_mode & S_IWUSR) ? 'w' : '-');
+		ss << ((statbuf.st_mode & S_IXUSR) ? 'x' : '-');
 		//group permissions rwx
-		cout << ((statbuf.st_mode & S_IRGRP) ? 'r' : '-');
-		cout << ((statbuf.st_mode & S_IWGRP) ? 'w' : '-');
-		cout << ((statbuf.st_mode & S_IXGRP) ? 'x' : '-');
+		ss << ((statbuf.st_mode & S_IRGRP) ? 'r' : '-');
+		ss << ((statbuf.st_mode & S_IWGRP) ? 'w' : '-');
+		ss << ((statbuf.st_mode & S_IXGRP) ? 'x' : '-');
 		//other permissions rwx
-		cout << ((statbuf.st_mode & S_IROTH) ? 'r' : '-');
-		cout << ((statbuf.st_mode & S_IWOTH) ? 'w' : '-');
-		cout << ((statbuf.st_mode & S_IXOTH) ? 'x' : '-');
+		ss << ((statbuf.st_mode & S_IROTH) ? 'r' : '-');
+		ss << ((statbuf.st_mode & S_IWOTH) ? 'w' : '-');
+		ss << ((statbuf.st_mode & S_IXOTH) ? 'x' : '-');
 		
-		cout << ' ';
+		ss << ' ';
 		// number of links
-		cout << statbuf.st_nlink;
+		ss << statbuf.st_nlink;
 		
-		cout << ' ';
+		ss << ' ';
 		// name of file owner
 		struct passwd *pw = getpwuid(statbuf.st_uid); //syscall
 		if (pw == NULL)
@@ -195,10 +202,10 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 		}
 		else
 		{
-			cout << pw->pw_name;
+			ss << pw->pw_name;
 		}
 		
-		cout << ' ';
+		ss << ' ';
 		// group of file (anyone who is in this group can do this)
 		struct group *gp = getgrgid(statbuf.st_gid); // syscall
 		if (gp == NULL)
@@ -208,24 +215,26 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 		}
 		else
 		{
-			cout << gp->gr_name;
+			ss << gp->gr_name;
 		}
 		
-		cout << setw(6) << right;
+		ss << setw(6) << right;
 		// file size in bytes
-		cout << statbuf.st_size;
+		ss << statbuf.st_size;
 		
 		// date modified st_mtime
 		string timey = ctime(&statbuf.st_mtime);
 		timey.erase(timey.begin()+24);
 		timey.erase(0,3);
-		cout << ' ' << timey;
+		ss << ' ' << timey;
 		
-		cout << ' ';
+		ss << ' ';
 		// name of the file
-		cout << direntp->d_name;
-		cout << endl;
+		ss << direntp->d_name;
+		ss << endl;
 	}
+	cout << "total: " << blocktotal << '\n';
+	cout << ss.str();
 	if (errno != 0)
 	{
 		perror("error reading directory");
@@ -235,23 +244,6 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 		perror("closedir");
 		exit(1);
 	}
-	
-	/* int count = scandir();
-	if (count == -1)
-	{
-		perror("printlong: scandir");
-	}
-	else
-	{
-		if (count > 0)
-		{
-			cout << "total: " << count << '\n';
-			for (unsigned i = 0; i < count; i++)
-			{
-				if (stat(files[i]->d_name, &statbuf) == 0)
-			}
-		}
-	} */
 }
 
 int main(int argc, char *argv[])
