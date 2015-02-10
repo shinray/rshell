@@ -250,14 +250,15 @@ void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls wit
 
 int main(int argc, char *argv[])
 {
-	vector<char*> vfiles, vfile_stats, vdirs;
+	vector<char*> vfiles, vdirs;
 	bool is_hidden = false, is_long = false, is_recursive = false;
 	
 	checkargs(argc, argv, vfiles, vdirs, is_hidden, is_long, is_recursive);
-	
+	//if (vfiles.empty()||vdirs.empty())
+	//{
 	char dirName[] = ".";
 	(is_long) ? printlong(dirName, is_recursive, is_hidden, true) : print(dirName, is_recursive, is_hidden, true);
-	
+	//}
 	/* char *dirName = ".";
 	DIR *dirp = opendir(dirName);
 	dirent *direntp;
