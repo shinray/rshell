@@ -10,6 +10,8 @@ should be able to handle comments, 'AND' and
 'OR' connectors, and multiple simultaneous 
 commands ('#', '&&', '||', and ';').
 
+HEY WHATS UP BOYS GONNA ADD ME SOME REDIRECTION (SOON^tm)
+
 --------------------
 How to install
 --------------------
