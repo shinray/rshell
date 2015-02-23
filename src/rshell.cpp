@@ -71,8 +71,9 @@ int maxstrlength(vector<string> &v)
 	return ret;
 }
 
-void execute(vector<vector<string> > &v)
+void execute(vector<vector<string> > &v, queue<int> &q)
 {
+	int currconnector, childstatus, pid;
 	for(unsigned i = 0; i < v.size(); ++i)
 	{
 		vector<char *> argv(v[i].size() + 1);
@@ -80,8 +81,9 @@ void execute(vector<vector<string> > &v)
 		{
 			argv[j] = &v[i][j][0];
 		}
-
-		int pid = fork(); // syscall fork
+		
+		currconnector = q.front();
+		pid = fork(); // syscall fork
 		if (pid == -1)
 		{
 			perror("fork fail"); // perror fork
@@ -97,12 +99,18 @@ void execute(vector<vector<string> > &v)
 		}
 		else //parent
 		{
-			if (wait(0) == -1) // wait syscall
+			if (wait(&childstatus) == -1) // wait syscall
 			{
 				perror("wait for child fail"); // wait perror
 				exit(1);
 			}
+			//cout << "childstatus: " << childstatus << '\n';
+			if ((childstatus != 0 && currconnector == 1) || (childstatus == 0 && currconnector == 2))
+			{
+				return;
+			}
 		}
+		q.pop();
 	}
 }
 
@@ -216,7 +224,7 @@ int main()
 			input.erase(find(input.begin(), input.end(), '#'), input.end()); // strips comments
 			queue<int> connectorq;
 			vector<vector<string> > cmdv = parse(input, connectorq);
-			execute(cmdv);
+			execute(cmdv, connectorq);
 			/*for (unsigned i = 0; i < cmdv.size(); ++i)
 			{
 				for(unsigned j = 0; j < cmdv[i].size(); ++j)
