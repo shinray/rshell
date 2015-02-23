@@ -56,6 +56,35 @@ using namespace std;
 	}
 }*/
 
+void execute(vector<vector<string> > v)
+{
+	for(unsigned i = 0; i < v.size(); ++v)
+	{
+		int pid = fork(); // syscall fork
+		if (pid == -1)
+		{
+			perror("fork fail"); // perror fork
+			exit(1);
+		}
+		else if (pid == 0) //child
+		{
+			if (execvp(v[i][0],v[i]) == -1) // syscall execvp
+			{
+				perror("execvp fail"); // perror execvp
+				exit(1);
+			}
+		}
+		else //parent
+		{
+			if (wait(0) == -1) // wait syscall
+			{
+				perror("wait for child fail"); // wait perror
+				exit(1);
+			}
+		}
+	}
+}
+
 vector<vector<string> > parse(string &cmdstr, queue<int> &cmdq)
 {
 	/*const string endconnector = ";"; // 0
@@ -166,13 +195,14 @@ int main()
 			input.erase(find(input.begin(), input.end(), '#'), input.end()); // strips comments
 			queue<int> connectorq;
 			vector<vector<string> > cmdv = parse(input, connectorq);
-			for (unsigned i = 0; i < cmdv.size(); ++i)
+			execute(cmdv);
+			/*for (unsigned i = 0; i < cmdv.size(); ++i)
 			{
 				for(unsigned j = 0; j < cmdv[i].size(); ++j)
 				{
 					cout << i << j << ' ' << cmdv[i][j] << '\n';
 				}
-			}
+			}*/
 			
 			//char *cstylestring = new char[input.length()+1];
 			//strcpy(cstylestring,input.c_str());
