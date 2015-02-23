@@ -56,10 +56,31 @@ using namespace std;
 	}
 }*/
 
-void execute(vector<vector<string> > v)
+int maxstrlength(vector<string> &v)
 {
-	for(unsigned i = 0; i < v.size(); ++v)
+	int ret = 0;
+	for (unsigned i = 0; i < v.size(); ++i)
 	{
+		int temp = v[i].size();
+		if (temp > ret)
+		{
+			ret = temp;
+		}
+	}
+
+	return ret;
+}
+
+void execute(vector<vector<string> > &v)
+{
+	for(unsigned i = 0; i < v.size(); ++i)
+	{
+		vector<char *> argv(v[i].size() + 1);
+		for(unsigned j = 0; j < v[i].size(); ++j)
+		{
+			argv[j] = &v[i][j][0];
+		}
+
 		int pid = fork(); // syscall fork
 		if (pid == -1)
 		{
@@ -68,7 +89,7 @@ void execute(vector<vector<string> > v)
 		}
 		else if (pid == 0) //child
 		{
-			if (execvp(v[i][0],v[i]) == -1) // syscall execvp
+			if (execvp(v[i][0].c_str(), argv.data()) == -1) // syscall execvp
 			{
 				perror("execvp fail"); // perror execvp
 				exit(1);
