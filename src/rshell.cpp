@@ -71,7 +71,7 @@ int maxstrlength(vector<string> &v)
 	return ret;
 }
 
-void execute(vector<vector<string> > &v, queue<int> &q)
+void execute(vector<vector<string> > &v, vector<int> &q)
 {
 	int currconnector, childstatus, pid;
 	for(unsigned i = 0; i < v.size(); ++i)
@@ -82,7 +82,33 @@ void execute(vector<vector<string> > &v, queue<int> &q)
 			argv[j] = &v[i][j][0];
 		}
 		
-		currconnector = q.front();
+		int stdinpipe[2];
+		int stdoutpipe[2];
+		int stderrpipe[2];
+		if (pipe(stdinpipe) == -1)
+		{
+			perror("pipe0 fail");
+			exit(1);
+		}
+		if (pipe(stdoutpipe) == -1)
+		{
+			perror("pipe1 fail");
+			exit(1);
+		}
+		if (pipe(stderrpipe) == -1)
+		{
+			perror("pipe2 fail");
+			exit(1);
+		}
+
+		if (i < q.size())
+		{
+			currconnector = q.at(i);
+		}
+		else
+		{
+			currconnector = 0;
+		}
 		pid = fork(); // syscall fork
 		if (pid == -1)
 		{
@@ -110,11 +136,11 @@ void execute(vector<vector<string> > &v, queue<int> &q)
 				return;
 			}
 		}
-		q.pop();
+		//q.pop();
 	}
 }
 
-vector<vector<string> > parse(string &cmdstr, queue<int> &cmdq)
+vector<vector<string> > parse(string &cmdstr, vector<int> &cmdq)
 {
 	/*const string endconnector = ";"; // 0
 	const string andconnector = "&&"; // 1
@@ -135,39 +161,39 @@ vector<vector<string> > parse(string &cmdstr, queue<int> &cmdq)
 	{
 		if (cmdstr[i] == ';')
 		{
-			cmdq.push(0);
+			cmdq.push_back(0);
 		}
 		else if (cmdstr[i] == '|')
 		{
 			if (cmdstr[i+1] == '|') //or
 			{
 				i++;
-				cmdq.push(2);
+				cmdq.push_back(2);
 			}
 			else //pipe
 			{
-				cmdq.push(3);
+				cmdq.push_back(3);
 			}
 		}
 		else if ((cmdstr[i] == '&') && (cmdstr[i+1] == '&'))
 		{
 			i++;
-			cmdq.push(1);
+			cmdq.push_back(1);
 		}
 		else if (cmdstr[i] == '<')
 		{
-			cmdq.push(4); // in
+			cmdq.push_back(4); // in
 		}
 		else if (cmdstr[i] == '>')
 		{
 			if (cmdstr[i+1] == '>')
 			{
 				i++;
-				cmdq.push(6); //append
+				cmdq.push_back(6); //append
 			}
 			else
 			{
-				cmdq.push(5); //out
+				cmdq.push_back(5); //out
 			}
 		}
 		/*else if (cmdstr[i] == ' ')
@@ -222,7 +248,7 @@ int main()
 		if (!input.empty())
 		{
 			input.erase(find(input.begin(), input.end(), '#'), input.end()); // strips comments
-			queue<int> connectorq;
+			vector<int> connectorq;
 			vector<vector<string> > cmdv = parse(input, connectorq);
 			execute(cmdv, connectorq);
 			/*for (unsigned i = 0; i < cmdv.size(); ++i)
