@@ -29,8 +29,8 @@ none yet I think
 --------------------
 How to use
 --------------------
-* 'exit' to quit
-* anything after '#' should be considered a comment
+* `exit` to quit
+* anything after `#` should be considered a comment
 and ignored
 * multiple commands can be input at once using:
 	1. ls ; echo (will run ls followed by echo)
@@ -40,9 +40,4 @@ and ignored
 --------------------
 CURRENT BUGS:
 --------------------
-*currently does not accept multiple commands or any kind of connectors (!!)
-*can handle spaces but not tabs
-*i am an incompetent moron
-*not finished yet
-*SEND HELP
-
+* `&` is considered a connector and is regex'd out.
