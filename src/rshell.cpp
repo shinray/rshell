@@ -73,54 +73,58 @@ using namespace std;
 	return ret;
 }*/
 
-int exec_redir(vector<vector<string> > &v, vector<int> &q, int index)
+int output_redir(vector<vector<string> > &v, vector<int> &q, int index)
 {
-	const int PIPE_READ = 0; //pipe read end
-	const int PIPE_WRITE = 1; // pipe write end
-	int backup_stdin, backup_stdout, backup_stderr;
-	int ret = 0;
-	int pid;
-	
-	// converts vector<string> to char**
-	vector<char *> argv(v[index].size() + 1);
-	for(unsigned j = 0; j < v[index].size(); ++j)
+	int ret = 1;
+	unsigned tempindex = index;
+	if (tempindex >= v.size())
 	{
-		argv[j] = &v[index][j][0];
+		cerr << "syntax error: no target file" << endl;
+		return -1;
 	}
-
-	if (q.at(index) == 5) // '>' output
+	else
 	{
-		int outpipe[2];
-		if (pipe(outpipe) == -1)
+		string destfile = v[index+1][0];
+		//ret++;
+
+		// converts vector<string> to char**
+		vector<char *> argv(v[index].size() + 1);
+		for(unsigned j = 0; j < v[index].size(); ++j)
 		{
-			perror("pipe");
-			exit(1);
+			argv[j] = &v[index][j][0];
 		}
 
-		pid = fork();
+		int backup_stdout = dup(1); // backup stdout
+		if (backup_stdout == -1)
+		{
+			perror("dup");
+			exit(1);
+		}
+		int fddestflags = (O_CREAT | O_WRONLY | O_TRUNC);
+		int modeflags = (S_IRWXU | S_IRWXG | S_IRWXO);
+		int fddest = open(destfile.c_str(), fddestflags, modeflags);
+		if (fddest == -1)
+		{
+			perror("open");
+			return ret; // do not increment ret
+		}
+		if (dup2(fddest, 1) == -1)
+		{
+			perror("dup2");
+			exit(1);
+		}
+		// do normal child fork stuff
+		int childstatus;
+		int pid = fork();
+		
 		if (pid == -1)
 		{
 			perror("fork");
 			exit(1);
 		}
-		else if (pid == 0) //child
+		else if (pid == 0) // child
 		{
-			if (close(outpipe[PIPE_READ])==-1) // close read end
-			{
-				perror("close");
-				exit(1);
-			}
-			if ((dup(1)=backup_stdout)==-1) // backup stdout
-			{
-				perror("dup");
-				exit(1);
-			}
-			if (dup2(fd[PIPE_WRITE],1)==-1) // overwrite fd #1 (stdout) with PIPE_WRITE end
-			{
-				perror("dup2");
-				exit(1);
-			}
-			if (execvp(v[index][0].c_str(),argv.data()) == -1)
+			if (execvp(v[index][0].c_str(), argv.data()) == -1)
 			{
 				perror("execvp");
 				exit(1);
@@ -128,54 +132,26 @@ int exec_redir(vector<vector<string> > &v, vector<int> &q, int index)
 		}
 		else //parent
 		{
-			if (wait()==-1) // wait for child
+			if (wait(&childstatus) == -1)
 			{
 				perror("wait");
 				exit(1);
 			}
-			int pid2 = fork();
-			if (pid2 == -1)
-			{
-				perror("fork");
-				exit(1);
-			}
-			else if(pid2 == 0) // child2
-			{
-				char buf[BUFSIZ];
-				int destfd, outputflag;
-				outputflag = (O_RDWR | O_CREAT);
-				if ((destfd = open(destfile,outputflag, S_IRWXU))==-1)
-				{
-					perror("open");
-				}
-				if(write(destfd,buf,BUFSIZ) == -1)
-				{
-					perror("write");
-				}	
-				// converts vector<string> to char**
-				/*vector<char *> argv2(v[index+1].size() + 1);
-				for(unsigned k = 0; k < v[index+1].size(); ++k)
-				{
-					argv2[k] = &v[index][k][0];
-				}
-				if(execvp(v[index+1][0],argv2.data())==-1) //runs NEXT instruction
-				{
-					perror("execvp");
-					exit(1);
-				}*/
-			}
-			else //parent2
-			{
-				if(wait()==-1) // wait for child2
-				{
-					perror("wait");
-					exit(1);
-				}
-			}
+		}
+		// restore stdout
+		if (dup2(backup_stdout, 1)== -1)
+		{
+			perror("dup2_restore");
+			exit(1);
+		}
+		if(close(fddest)==-1) //always close your filedescriptors once you're done!! fixme:cp.cpp
+		{
+			perror("close");
+			exit(1);
 		}
 	}
 
-	return ret;
+	return ret+1;
 }
 
 void execute(vector<vector<string> > &v, vector<int> &q)
@@ -212,9 +188,18 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 			currconnector = 0;
 		}
 
-		if (currconnector >= 3) // if redirection is required
+		if (currconnector == 5) // outputredir
 		{
-			i = exec_redir(v,q,i);
+			int ioffset = output_redir(v,q,i);
+			if (ioffset == -1)
+			{
+				return; // file does not exist
+			}
+			else
+			{
+				i += ioffset;
+				continue; // this iteration is done
+			}
 		}
 		
 		// converts vector<string> to char**
