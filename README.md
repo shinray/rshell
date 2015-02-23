@@ -10,7 +10,7 @@ should be able to handle comments, 'AND' and
 'OR' connectors, and multiple simultaneous 
 commands ('#', '&&', '||', and ';').
 
-HEY WHATS UP BOYS GONNA ADD ME SOME REDIRECTION (SOON^tm)
+HEY WHATS UP BOYS GONNA ADD ME SOME REDIRECTION (SOON<sup>tm</sup>)
 
 --------------------
 How to install
@@ -41,3 +41,4 @@ and ignored
 CURRENT BUGS:
 --------------------
 * `&` is considered a connector and is regex'd out.
+* redirection of any kind doesn't work.
