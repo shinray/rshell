@@ -5,6 +5,8 @@
 #include <cstring>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <boost/tokenizer.hpp>
 #include <boost/algorithm/string/regex.hpp>
 #include <vector>
@@ -56,7 +58,7 @@ using namespace std;
 	}
 }*/
 
-int maxstrlength(vector<string> &v)
+/*int maxstrlength(vector<string> &v)
 {
 	int ret = 0;
 	for (unsigned i = 0; i < v.size(); ++i)
@@ -69,20 +71,120 @@ int maxstrlength(vector<string> &v)
 	}
 
 	return ret;
+}*/
+
+int exec_redir(vector<vector<string> > &v, vector<int> &q, int index)
+{
+	const int PIPE_READ = 0; //pipe read end
+	const int PIPE_WRITE = 1; // pipe write end
+	int backup_stdin, backup_stdout, backup_stderr;
+	int ret = 0;
+	int pid;
+	
+	// converts vector<string> to char**
+	vector<char *> argv(v[index].size() + 1);
+	for(unsigned j = 0; j < v[index].size(); ++j)
+	{
+		argv[j] = &v[index][j][0];
+	}
+
+	if (q.at(index) == 5) // '>' output
+	{
+		int outpipe[2];
+		if (pipe(outpipe) == -1)
+		{
+			perror("pipe");
+			exit(1);
+		}
+
+		pid = fork();
+		if (pid == -1)
+		{
+			perror("fork");
+			exit(1);
+		}
+		else if (pid == 0) //child
+		{
+			if (close(outpipe[PIPE_READ])==-1) // close read end
+			{
+				perror("close");
+				exit(1);
+			}
+			if ((dup(1)=backup_stdout)==-1) // backup stdout
+			{
+				perror("dup");
+				exit(1);
+			}
+			if (dup2(fd[PIPE_WRITE],1)==-1) // overwrite fd #1 (stdout) with PIPE_WRITE end
+			{
+				perror("dup2");
+				exit(1);
+			}
+			if (execvp(v[index][0].c_str(),argv.data()) == -1)
+			{
+				perror("execvp");
+				exit(1);
+			}
+		}
+		else //parent
+		{
+			if (wait()==-1) // wait for child
+			{
+				perror("wait");
+				exit(1);
+			}
+			int pid2 = fork();
+			if (pid2 == -1)
+			{
+				perror("fork");
+				exit(1);
+			}
+			else if(pid2 == 0) // child2
+			{
+				char buf[BUFSIZ];
+				int destfd, outputflag;
+				outputflag = (O_RDWR | O_CREAT);
+				if ((destfd = open(destfile,outputflag, S_IRWXU))==-1)
+				{
+					perror("open");
+				}
+				if(write(destfd,buf,BUFSIZ) == -1)
+				{
+					perror("write");
+				}	
+				// converts vector<string> to char**
+				/*vector<char *> argv2(v[index+1].size() + 1);
+				for(unsigned k = 0; k < v[index+1].size(); ++k)
+				{
+					argv2[k] = &v[index][k][0];
+				}
+				if(execvp(v[index+1][0],argv2.data())==-1) //runs NEXT instruction
+				{
+					perror("execvp");
+					exit(1);
+				}*/
+			}
+			else //parent2
+			{
+				if(wait()==-1) // wait for child2
+				{
+					perror("wait");
+					exit(1);
+				}
+			}
+		}
+	}
+
+	return ret;
 }
 
 void execute(vector<vector<string> > &v, vector<int> &q)
 {
 	int currconnector, childstatus, pid;
+
 	for(unsigned i = 0; i < v.size(); ++i)
-	{
-		vector<char *> argv(v[i].size() + 1);
-		for(unsigned j = 0; j < v[i].size(); ++j)
-		{
-			argv[j] = &v[i][j][0];
-		}
-		
-		int stdinpipe[2];
+	{	
+		/*int stdinpipe[2];
 		int stdoutpipe[2];
 		int stderrpipe[2];
 		if (pipe(stdinpipe) == -1)
@@ -99,9 +201,9 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		{
 			perror("pipe2 fail");
 			exit(1);
-		}
+		}*/
 
-		if (i < q.size())
+		if (i < q.size()) // if there are no more connectors
 		{
 			currconnector = q.at(i);
 		}
@@ -109,6 +211,19 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		{
 			currconnector = 0;
 		}
+
+		if (currconnector >= 3) // if redirection is required
+		{
+			i = exec_redir(v,q,i);
+		}
+		
+		// converts vector<string> to char**
+		vector<char *> argv(v[i].size() + 1);
+		for(unsigned j = 0; j < v[i].size(); ++j)
+		{
+			argv[j] = &v[i][j][0];
+		}
+
 		pid = fork(); // syscall fork
 		if (pid == -1)
 		{
@@ -131,9 +246,10 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 				exit(1);
 			}
 			//cout << "childstatus: " << childstatus << '\n';
+			// if child failed and connector is &&		// if child passed and connector is ||
 			if ((childstatus != 0 && currconnector == 1) || (childstatus == 0 && currconnector == 2))
 			{
-				return;
+				return; // we are done, no further commands necessary
 			}
 		}
 		//q.pop();
