@@ -154,6 +154,82 @@ int output_redir(vector<vector<string> > &v, vector<int> &q, int index)
 	return ret+1;
 }
 
+int output_append(vector<vector<string> > &v, vector<int> &q, int index)
+{
+	int ret = 1;
+	unsigned tempindex = index;
+	if (tempindex >= v.size())
+	{
+		cerr << "syntax error: no target file" << endl;
+		return -1;
+	}
+	else
+	{
+		string destfile = v[index+1][0];
+
+		vector<char *> argv(v[index].size()+1);
+		for (unsigned j = 0; j < v[index].size(); ++j)
+		{
+			argv[j] = &v[index][j][0];
+		}
+		
+		int backup_stdout = dup(1);
+		if (backup_stdout == -1)
+		{
+			perror("dup");
+			exit(1);
+		}
+		
+		int fddestflags = (O_CREAT | O_WRONLY | O_APPEND);
+		int modeflags = (S_IRWXU | S_IRWXG | S_IRWXO);
+		int fddest = open(destfile.c_str(), fddestflags, modeflags);
+		if (fddest == -1)
+		{
+			perror("open");
+			return ret;
+		}
+
+		if (dup2(fddest, 1) == -1)
+		{
+			perror("dup2");
+			exit(1);
+		}
+
+		// normal fork stuff ( i really should have made this a func)
+		int childstatus;
+		int pid = fork();
+		if (pid == -1)
+		{
+			perror("fork");
+			exit(1);
+		}
+		else if (pid == 0)
+		{
+			if (execvp(v[index][0].c_str(),argv.data()) == -1)
+			{
+				perror("Execvp");
+				exit(1);
+			}
+		}
+		else
+		{
+			if (wait(&childstatus) == -1)
+			{
+				perror("wait");
+				exit(1);
+			}
+		}
+
+		if (dup2(backup_stdout, 1)==-1)
+		{
+			perror("dup2_restore");
+			exit(1);
+		}
+	}
+
+	return ret+1;
+}
+
 void execute(vector<vector<string> > &v, vector<int> &q)
 {
 	int currconnector, childstatus, pid;
@@ -187,7 +263,6 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		{
 			currconnector = 0;
 		}
-
 		if (currconnector == 5) // outputredir
 		{
 			int ioffset = output_redir(v,q,i);
@@ -201,7 +276,19 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 				continue; // this iteration is done
 			}
 		}
-		
+		if (currconnector == 6)
+		{
+			int ioffset = output_append(v,q,i);
+			if (ioffset == -1)
+			{
+				return; //error
+			}
+			else
+			{
+				i += ioffset;
+				continue; // this iteration is done
+			}
+		}
 		// converts vector<string> to char**
 		vector<char *> argv(v[i].size() + 1);
 		for(unsigned j = 0; j < v[i].size(); ++j)
