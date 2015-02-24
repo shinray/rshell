@@ -1,0 +1,324 @@
+Script started on Tue 24 Feb 2015 05:10:24 AM PST
+~
+skuo004@hammer $ ls -l[K[K[K[K[Kcd cs100/ls[K[Krshell/[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cs100/rshe[K[K[K[K[K[K[K[K[K[Kcd cs100/rshell//rsh[K[K[K[Krshell/src
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m g++ -w[KWall -W[K[K[K[K[K[K[Kg -Wall - W[K[KWero[Kror -ansi  -pedantic
+g++: fatal error: no input files
+compilation terminated.
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m g++ -g -Wall -Werror -ansi --pedantic -rsh[K[K[K[Krshell.cpp
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m .[Kcppcheck v[Krshell.cpp
+Checking rshell.cpp...
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m c[Kvalgrind a.out
+==13203== Memcheck, a memory error detector
+==13203== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==13203== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==13203== Command: a.out
+==13203== 
+$ #input redir, e   
+$ tr - a-z < A-Z < e                ls
+a.out  cp.cpp  rshell.cpp  test.txt  Timer.h
+$ cat test.txt
+9
+3
+4
+2
+6
+1
+6
+a
+5
+d
+f
+g9g
+$ sort < test.txt
+1
+2
+3
+4
+5
+6
+6
+9
+a
+d
+f
+g9g
+$ so  tr a-z a A_ -z Z < test.txt
+9
+3
+4
+2
+6
+1
+6
+A
+5
+D
+F
+G9G
+$ tr a-z A-Z < t doesnotexist.txt #this file does not exist
+open: No such file or directory
+$ cat <  <test	.txt
+9
+3
+4
+2
+6
+1
+6
+a
+5
+d
+f
+g9g
+$ cat    	 	cat	<	< test.txt
+9
+3
+4
+2
+6
+1
+6
+a
+5
+d
+f
+g9g
+$ #balskklfs #lksjflskjfskd cat<test.txt
+$ cat <     # cat <#noarguments
+==13203== Invalid read of size 8
+==13203==    at 0x403672: std::vector<std::string, std::allocator<std::string> >::operator[](unsigned long) (stl_vector.h:771)
+==13203==    by 0x40204E: input_redir(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&, int) (rshell.cpp:249)
+==13203==    by 0x402923: execute(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&) (rshell.cpp:555)
+==13203==    by 0x40332D: main (rshell.cpp:741)
+==13203==  Address 0x4c2f3b8 is 0 bytes after a block of size 24 alloc'd
+==13203==    at 0x4A075FC: operator new(unsigned long) (vg_replace_malloc.c:298)
+==13203==    by 0x406D5C: __gnu_cxx::new_allocator<std::vector<std::string, std::allocator<std::string> > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+==13203==    by 0x40602A: std::_Vector_base<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >::_M_allocate(unsigned long) (in /class/classes/skuo004/cs100/rshell/rshell/src/a.out)
+==13203==    by 0x404C4E: std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::vector<std::string, std::allocator<std::string> >*, std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > > >, std::vector<std::string, std::allocator<std::string> > const&) (vector.tcc:345)
+==13203==    by 0x403DA7: std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >::push_back(std::vector<std::string, std::allocator<std::string> > const&) (stl_vector.h:913)
+==13203==    by 0x403071: parse(std::string&, std::vector<int, std::allocator<int> >&) (rshell.cpp:718)
+==13203==    by 0x40331A: main (rshell.cpp:740)
+==13203== 
+==13203== Invalid read of size 8
+==13203==    at 0x3B5B29D258: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&) (in /usr/lib64/libstdc++.so.6.0.13)
+==13203==    by 0x402060: input_redir(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&, int) (rshell.cpp:249)
+==13203==    by 0x402923: execute(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&) (rshell.cpp:555)
+==13203==    by 0x40332D: main (rshell.cpp:741)
+==13203==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==13203== 
+==13203== 
+==13203== Process terminating with default action of signal 11 (SIGSEGV)
+==13203==  Access not within mapped region at address 0x0
+==13203==    at 0x3B5B29D258: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&) (in /usr/lib64/libstdc++.so.6.0.13)
+==13203==    by 0x402060: input_redir(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&, int) (rshell.cpp:249)
+==13203==    by 0x402923: execute(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&) (rshell.cpp:555)
+==13203==    by 0x40332D: main (rshell.cpp:741)
+==13203==  If you believe this happened as a result of a stack
+==13203==  overflow in your program's main thread (unlikely but
+==13203==  possible), you can try to increase the size of the
+==13203==  main thread stack using the --main-stacksize= flag.
+==13203==  The main thread stack size used in this run was 10485760.
+==13203== 
+==13203== HEAP SUMMARY:
+==13203==     in use at exit: 121 bytes in 5 blocks
+==13203==   total heap usage: 175 allocs, 170 frees, 5,154 bytes allocated
+==13203== 
+==13203== LEAK SUMMARY:
+==13203==    definitely lost: 0 bytes in 0 blocks
+==13203==    indirectly lost: 0 bytes in 0 blocks
+==13203==      possibly lost: 85 bytes in 2 blocks
+==13203==    still reachable: 36 bytes in 3 blocks
+==13203==         suppressed: 0 bytes in 0 blocks
+==13203== Rerun with --leak-check=full to see details of leaked memory
+==13203== 
+==13203== For counts of detected and suppressed errors, rerun with: -v
+==13203== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)
+Segmentation fault
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m valgrind a.out
+==13284== Memcheck, a memory error detector
+==13284== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==13284== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==13284== Command: a.out
+==13284== 
+$ cat   #as you can see there are some bugs witnh h  h noargs
+$ #cat << exis    test.txt <                  ls
+a.out  cp.cpp  rshell.cpp  test.txt  Timer.h
+$ cat <test.txt < cp.cpp                      vi  cat < test.txt < timer     cp.cpp
+9
+3
+4
+2
+6
+1
+6
+a
+5
+d
+f
+g9g
+$ cat test.txt
+9
+3
+4
+2
+6
+1
+6
+a
+5
+d
+f
+g9g
+$ cat   nones xistent progra, m   >   < test.txt
+Execvp: No such file or directory
+==13307== 
+==13307== HEAP SUMMARY:
+==13307==     in use at exit: 258 bytes in 9 blocks
+==13307==   total heap usage: 91 allocs, 82 frees, 2,981 bytes allocated
+==13307== 
+==13307== LEAK SUMMARY:
+==13307==    definitely lost: 0 bytes in 0 blocks
+==13307==    indirectly lost: 0 bytes in 0 blocks
+==13307==      possibly lost: 158 bytes in 4 blocks
+==13307==    still reachable: 100 bytes in 5 blocks
+==13307==         suppressed: 0 bytes in 0 blocks
+==13307== Rerun with --leak-check=full to see details of leaked memory
+==13307== 
+==13307== For counts of detected and suppressed errors, rerun with: -v
+==13307== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+$ s #output redire              cat     echo    c echo testfile2 h > hel   testfile2.txt #  
+$ ls
+a.out  cp.cpp  rshell.cpp  testfile2.txt  test.txt  Timer.h
+$ cat h testfile2.txt
+testfile2
+$ cat hello > testfile2.txt
+cat: hello: No such file or directory
+$ cat e     echo hello > testfile2.txt
+$ cat he   tes    testfile2.txt
+hello
+$ echo hello >
+==13284== Invalid read of size 8
+==13284==    at 0x403672: std::vector<std::string, std::allocator<std::string> >::operator[](unsigned long) (stl_vector.h:771)
+==13284==    by 0x401880: output_redir(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&, int) (rshell.cpp:87)
+==13284==    by 0x402958: execute(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&) (rshell.cpp:568)
+==13284==    by 0x40332D: main (rshell.cpp:741)
+==13284==  Address 0x4c30398 is 0 bytes after a block of size 24 alloc'd
+==13284==    at 0x4A075FC: operator new(unsigned long) (vg_replace_malloc.c:298)
+==13284==    by 0x406D5C: __gnu_cxx::new_allocator<std::vector<std::string, std::allocator<std::string> > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+==13284==    by 0x40602A: std::_Vector_base<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >::_M_allocate(unsigned long) (in /class/classes/skuo004/cs100/rshell/rshell/src/a.out)
+==13284==    by 0x404C4E: std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::vector<std::string, std::allocator<std::string> >*, std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > > >, std::vector<std::string, std::allocator<std::string> > const&) (vector.tcc:345)
+==13284==    by 0x403DA7: std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >::push_back(std::vector<std::string, std::allocator<std::string> > const&) (stl_vector.h:913)
+==13284==    by 0x403071: parse(std::string&, std::vector<int, std::allocator<int> >&) (rshell.cpp:718)
+==13284==    by 0x40331A: main (rshell.cpp:740)
+==13284== 
+==13284== Invalid read of size 8
+==13284==    at 0x3B5B29D258: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&) (in /usr/lib64/libstdc++.so.6.0.13)
+==13284==    by 0x401892: output_redir(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&, int) (rshell.cpp:87)
+==13284==    by 0x402958: execute(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&) (rshell.cpp:568)
+==13284==    by 0x40332D: main (rshell.cpp:741)
+==13284==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==13284== 
+==13284== 
+==13284== Process terminating with default action of signal 11 (SIGSEGV)
+==13284==  Access not within mapped region at address 0x0
+==13284==    at 0x3B5B29D258: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&) (in /usr/lib64/libstdc++.so.6.0.13)
+==13284==    by 0x401892: output_redir(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&, int) (rshell.cpp:87)
+==13284==    by 0x402958: execute(std::vector<std::vector<std::string, std::allocator<std::string> >, std::allocator<std::vector<std::string, std::allocator<std::string> > > >&, std::vector<int, std::allocator<int> >&) (rshell.cpp:568)
+==13284==    by 0x40332D: main (rshell.cpp:741)
+==13284==  If you believe this happened as a result of a stack
+==13284==  overflow in your program's main thread (unlikely but
+==13284==  possible), you can try to increase the size of the
+==13284==  main thread stack using the --main-stacksize= flag.
+==13284==  The main thread stack size used in this run was 10485760.
+==13284== 
+==13284== HEAP SUMMARY:
+==13284==     in use at exit: 147 bytes in 6 blocks
+==13284==   total heap usage: 223 allocs, 217 frees, 5,911 bytes allocated
+==13284== 
+==13284== LEAK SUMMARY:
+==13284==    definitely lost: 0 bytes in 0 blocks
+==13284==    indirectly lost: 0 bytes in 0 blocks
+==13284==      possibly lost: 103 bytes in 3 blocks
+==13284==    still reachable: 44 bytes in 3 blocks
+==13284==         suppressed: 0 bytes in 0 blocks
+==13284== Rerun with --leak-check=full to see details of leaked memory
+==13284== 
+==13284== For counts of detected and suppressed errors, rerun with: -v
+==13284== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)
+Segmentation fault
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m cs[K[Ka.o[K[K[Kal[K.out
+$ echo hello > testfile2 >                     world > e tesf tfile2 > test.        .txt > testfiledne
+$ ls
+a.out  cp.cpp  rshell.cpp  testfile2.txt  test.txt  Timer.h
+$ ls    touch test3.t  
+$ ls  cat test3
+$ echo hello >> test3
+$ echo      cat test3
+hello
+$ echo      cat < testfile2.txt > tstfil      test3  
+world
+$ cat test3
+hello
+$ cat testfile2.txt
+world
+$ cat > testfile2.txt >   < test3
+^C
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m echo hello | tr a-z A-Z
+HELLO
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m e[Kis[K[Kls }[K| tail -2 | tr -[Ka-z a-[K[KA_[K-Z
+TEST.TXT
+TIMER.H
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m ls | tr a-z A-Z | grep x
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m cd[K[Ka.out
+$ echo hello }   | tr a-z A-Z
+HELLO
+$ ls - } | grep 3 | tr a-z A-Z
+TEST3
+$ echo } |h    hello | echo world
+world
+$ echo hello | h echo } wo    world }   | echo    tr - a-z A-Z
+WORLD
+$ echo hello } | echo } | world
+Execvp: No such file or directory
+$ dnexist | tr a-z A-Z
+Execvp: No such file or directory
+$ echo hello } | tr a-z A-Z /|  | t tee out   hellotest.txt |   > hello2.txt
+HELLO
+execvp fail: No such file or directory
+$ echo hello | tra  a-z A-z Z > hellotest                                   s ls
+a.out	hellotest.txt  test3	      test.txt
+cp.cpp	rshell.cpp     testfile2.txt  Timer.h
+$ echo hello | tr a-z AZ -Z                         cat hellotest.txt
+HELLO
+$ cat < ex  hellotest.txt | tra  a-z A-Z | tee new   h test4.txt | tra    a a-z A-Z >> o test5.txt
+HELLO
+^C
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m a.out
+$ script      exit
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell/src[0;95m (redirect) [0;36m$[0m exit
+exit
+~
+skuo004@hammer $ exit
+exit
+
+Script done on Tue 24 Feb 2015 05:26:06 AM PST
