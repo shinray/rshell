@@ -225,11 +225,96 @@ int output_append(vector<vector<string> > &v, vector<int> &q, int index)
 			perror("dup2_restore");
 			exit(1);
 		}
+		if (close(fddest) == -1)
+		{
+			perror("close");
+			exit(1);
+		}
 	}
 
 	return ret+1;
 }
 
+int input_redir(vector<vector<string> > &v, vector<int> &q, int index)
+{
+	int ret = 1;
+	unsigned tempindex = index;
+	if (tempindex >= v.size())
+	{
+		cerr << "syntax error: no target file" << endl;
+		return -1;
+	}
+	else
+	{
+		string srcfile = v[index+1][0];
+
+		vector<char *> argv(v[index].size()+1);
+		for (unsigned j = 0; j < v[index].size(); ++j)
+		{
+			argv[j] = &v[index][j][0];
+		}
+		
+		int backup_stdin = dup(0);//save stdin
+		if (backup_stdin == -1)
+		{
+			perror("dup");
+			exit(1);
+		}
+		
+		int fdsrcflags = (O_RDONLY);
+		//int modeflags = (S_IRWXU | S_IRWXG | S_IRWXO);
+		int fdsrc = open(srcfile.c_str(), fdsrcflags);
+		if (fdsrc == -1)
+		{
+			perror("open");
+			return ret;
+		}
+
+		if (dup2(fdsrc, 0) == -1)//replace stdin with file input
+		{
+			perror("dup2");
+			exit(1);
+		}
+
+		// normal fork stuff ( i really should have made this a func)
+		int childstatus;
+		int pid = fork();
+		if (pid == -1)
+		{
+			perror("fork");
+			exit(1);
+		}
+		else if (pid == 0)
+		{
+			if (execvp(v[index][0].c_str(),argv.data()) == -1)
+			{
+				perror("Execvp");
+				exit(1);
+			}
+		}
+		else
+		{
+			if (wait(&childstatus) == -1)
+			{
+				perror("wait");
+				exit(1);
+			}
+		}
+
+		if (dup2(backup_stdin, 0)==-1) // restore stdin
+		{
+			perror("dup2_restore");
+			exit(1);
+		}
+		if (close(fdsrc) == -1)
+		{
+			perror("close");
+			exit(1);
+		}
+	}
+
+	return ret+1;
+}
 void execute(vector<vector<string> > &v, vector<int> &q)
 {
 	int currconnector, childstatus, pid;
@@ -263,6 +348,19 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		{
 			currconnector = 0;
 		}
+		if (currconnector == 4) // inputredir
+		{
+			int ioffset = input_redir(v,q,i);
+			if (ioffset == -1)
+			{
+				return; //error
+			}
+			else
+			{
+				i+= ioffset;
+				continue; // this iteration is complete
+			}
+		}
 		if (currconnector == 5) // outputredir
 		{
 			int ioffset = output_redir(v,q,i);
@@ -276,7 +374,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 				continue; // this iteration is done
 			}
 		}
-		if (currconnector == 6)
+		if (currconnector == 6) // output append
 		{
 			int ioffset = output_append(v,q,i);
 			if (ioffset == -1)
