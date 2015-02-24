@@ -350,6 +350,7 @@ int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 
 		for (unsigned i = index; i < tempindex; ++i)
 		{
+			//cout << "test" << endl;
 			int pipefd[2];
 			if(pipe(pipefd) == -1)
 			{
@@ -372,6 +373,11 @@ int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 			}
 			else if (pid == 0)
 			{
+				if (close(pipefd[0])==-1)
+				{
+					perror("close");
+					exit(1);
+				}
 				if (dup2(pipefd[1],1)==-1) // child replaces stdout with pipe input
 				{
 					perror("dup2_input");
@@ -385,6 +391,11 @@ int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 			}
 			else
 			{
+				if((close(pipefd[1]))==-1)
+				{
+					perror("close");
+					exit(1);
+				}
 				if (dup2(pipefd[0],0)==-1) // parent overwrites stdin with pipe output
 				{
 					perror("dup2_output");
@@ -396,11 +407,6 @@ int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 					exit(1);
 				}
 			}
-		}
-		if(dup2(backup_stdin,0)==-1) // restore stdin
-		{
-			perror("dup2_restore0");
-			exit(1);
 		}
 		if(dup2(backup_stdout,1)==-1)//restore stdout
 		{
@@ -418,6 +424,12 @@ int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 			perror("execvp");
 			exit(1);
 		}
+		if(dup2(backup_stdin,0)==-1) // restore stdin
+		{
+			perror("dup2_restore0");
+			exit(1);
+		}
+		
 	}
 
 	return ret+pipecount;
