@@ -318,13 +318,13 @@ int input_redir(vector<vector<string> > &v, vector<int> &q, int index)
 
 int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 {
-	int ret = 1;
-	unsigned tempindex = index;
+	int ret = 0;
+	int tempindex = index;
 	int pipecount = 0; //counts consecutive pipes (how deep does the rabbit hole go?)
-	if (tempindex >= v.size())
+	if (tempindex >= (int) v.size())
 	{
 		cerr << "syntax error: no target program" << endl; // FIXME: do something cooler than just exiting
-		return -1;
+		//return -1;
 	}
 	else
 	{
@@ -334,13 +334,17 @@ int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 			pipecount++;
 			++tempindex;
 		}
+		// if (pipecount == -)
+		// {
+			// tempindex++;
+		// }
 
-		int backup_stdin = dup(0);//save stdin
-		if (backup_stdin == -1)
-		{
-			perror("dup");
-			exit(1);
-		}
+		// int backup_stdin = dup(0);//save stdin
+		// if (backup_stdin == -1)
+		// {
+			// perror("dup");
+			// exit(1);
+		// }
 		int backup_stdout = dup(1); //save stdout
 		if (backup_stdout == -1)
 		{
@@ -348,88 +352,153 @@ int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 			exit(1);
 		}
 
-		for (unsigned i = index; i < tempindex; ++i)
+		int oldpipe[2];
+		int newpipe[2];
+		for (int i = index; i <= tempindex; ++i)
 		{
 			//cout << "test" << endl;
-			int pipefd[2];
-			if(pipe(pipefd) == -1)
+			if (i != tempindex) // if there is a next cmd
 			{
-				perror("pipe");
-				exit(1);
+				if(pipe(newpipe) == -1) // create new pipe
+				{
+					perror("pipe");
+					exit(1);
+				}
 			}
-			vector<char *> argv(v[i].size()+1);
+			vector<char *> argv(v[i].size()+1); // this converts arguments into char**
 			for (unsigned j = 0; j < v[i].size(); ++j)
 			{
 				argv[j] = &v[i][j][0];
 			}
 	
 			//normal fork stuff ( i really should have made this a func)
-			int childstatus;
+			//int childstatus;
 			int pid = fork();
 			if (pid == -1)
 			{
 				perror("fork");
 				exit(1);
 			}
-			else if (pid == 0)
+			else if (pid == 0) // child
 			{
-				if (close(pipefd[0])==-1)
+				if (i != index) // if not first command
 				{
-					perror("close");
-					exit(1);
+					if (dup2(oldpipe[0],0)==-1)
+					{
+						perror("dup2_input");
+						exit(1);
+					}
+					if (close(oldpipe[0])==-1)
+					{
+						perror("closeold0test");
+						exit(1);
+					}
+					if (close(oldpipe[1])==-1)
+					{
+						perror("closeold1");
+						exit(1);
+					}
 				}
-				if (dup2(pipefd[1],1)==-1) // child replaces stdout with pipe input
+				if (i != tempindex) // if there is a next
 				{
-					perror("dup2_input");
-					exit(1);
+					if (dup2(newpipe[1],1)==-1)
+					{
+						perror("dup2_input");
+						exit(1);
+					}
+					if (close(newpipe[0])==-1)
+					{
+						perror("closenew0");
+						exit(1);
+					}
+					if (close(newpipe[1])==-1)
+					{
+						perror("closenew1");
+						exit(1);
+					}
 				}
-				if (execvp(v[i][0].c_str(),argv.data()) == -1)
+				if (i == tempindex)
 				{
-					perror("Execvp");
-					exit(1);
+					if(dup2(backup_stdout,1)==-1)//restore stdout
+					{
+						perror("dup2_restore1");
+						exit(1);
+					}
+				}
+				if (execvp(v[i][0].c_str(),argv.data()) == -1) //transform here into command
+					{
+						perror("Execvp");
+						exit(1);
+					}	
+					cerr << "this did not just happen" << endl;
+			}
+			else //parent
+			{
+				if (i != index) // if there is previous
+				{
+					if((close(oldpipe[0]))==-1)
+					{
+						perror("closeold0");
+						exit(1);
+					}
+					if((close(oldpipe[1]))==-1)
+					{
+						perror("closeold1");
+						exit(1);
+					}
+				}
+				if( i < tempindex)
+				{
+					oldpipe[0] = newpipe[0];
+					oldpipe[1] = newpipe[1];
 				}
 			}
-			else
-			{
-				if((close(pipefd[1]))==-1)
-				{
-					perror("close");
-					exit(1);
-				}
-				if (dup2(pipefd[0],0)==-1) // parent overwrites stdin with pipe output
-				{
-					perror("dup2_output");
-					exit(1);
-				}
-				if (wait(&childstatus) == -1)
-				{
-					perror("wait");
-					exit(1);
-				}
-			}
+			
 		}
-		if(dup2(backup_stdout,1)==-1)//restore stdout
+		for (int j = index; j <= tempindex; ++j)
 		{
-			perror("dup2_restore1");
-			exit(1);
+			int childstatus;
+			if (wait(&childstatus) == -1)
+			{
+				perror("wait");
+				exit(1);
+			}
 		}
+		// if (pipecount>1)
+		// {
+			// if((close(oldpipe[0]))==-1)
+			// {
+				// perror("closeold0");
+				// exit(1);
+			// }
+			// if((close(oldpipe[1]))==-1)
+			// {
+				// perror("closeold1");
+				// exit(1);
+			// }
+		// }
+		// if(dup2(backup_stdout,1)==-1)//restore stdout
+		// {
+			// perror("dup2_restore1");
+			// exit(1);
+		// }
+		// if(dup2(backup_stdin,0)==-1) // restore stdin
+		// {
+			// perror("dup2_restore0");
+			// exit(1);
+		// }
 
-		vector<char *> argv2(v[tempindex].size()+1);
-		for (unsigned k = 0; k < v[tempindex].size(); ++k)
-		{
-			argv2[k] = &v[tempindex][k][0];
-		}
-		if (execvp(v[tempindex][0].c_str(), argv2.data()) == -1)
-		{
-			perror("execvp");
-			exit(1);
-		}
-		if(dup2(backup_stdin,0)==-1) // restore stdin
-		{
-			perror("dup2_restore0");
-			exit(1);
-		}
-		
+		// vector<char *> argv2(v[tempindex].size()+1);
+		// for (unsigned k = 0; k < v[tempindex].size(); ++k)
+		// {
+			// argv2[k] = &v[tempindex][k][0];
+		// }
+
+		// if (execvp(v[tempindex][0].c_str(), argv2.data()) == -1)
+		// {
+			// perror("execvp");
+			// exit(1);
+		// }
 	}
 
 	return ret+pipecount;
