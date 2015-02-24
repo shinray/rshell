@@ -315,6 +315,113 @@ int input_redir(vector<vector<string> > &v, vector<int> &q, int index)
 
 	return ret+1;
 }
+
+int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
+{
+	int ret = 1;
+	unsigned tempindex = index;
+	int pipecount = 0; //counts consecutive pipes (how deep does the rabbit hole go?)
+	if (tempindex >= v.size())
+	{
+		cerr << "syntax error: no target program" << endl; // FIXME: do something cooler than just exiting
+		return -1;
+	}
+	else
+	{
+		//string srcfile = v[index+1][0];
+		while (q[tempindex] == 3)
+		{
+			pipecount++;
+			++tempindex;
+		}
+
+		int backup_stdin = dup(0);//save stdin
+		if (backup_stdin == -1)
+		{
+			perror("dup");
+			exit(1);
+		}
+		int backup_stdout = dup(1); //save stdout
+		if (backup_stdout == -1)
+		{
+			perror("dup");
+			exit(1);
+		}
+
+		for (unsigned i = index; i < tempindex; ++i)
+		{
+			int pipefd[2];
+			if(pipe(pipefd) == -1)
+			{
+				perror("pipe");
+				exit(1);
+			}
+			vector<char *> argv(v[i].size()+1);
+			for (unsigned j = 0; j < v[i].size(); ++j)
+			{
+				argv[j] = &v[i][j][0];
+			}
+	
+			//normal fork stuff ( i really should have made this a func)
+			int childstatus;
+			int pid = fork();
+			if (pid == -1)
+			{
+				perror("fork");
+				exit(1);
+			}
+			else if (pid == 0)
+			{
+				if (dup2(pipefd[1],1)==-1) // child replaces stdout with pipe input
+				{
+					perror("dup2_input");
+					exit(1);
+				}
+				if (execvp(v[i][0].c_str(),argv.data()) == -1)
+				{
+					perror("Execvp");
+					exit(1);
+				}
+			}
+			else
+			{
+				if (dup2(pipefd[0],0)==-1) // parent overwrites stdin with pipe output
+				{
+					perror("dup2_output");
+					exit(1);
+				}
+				if (wait(&childstatus) == -1)
+				{
+					perror("wait");
+					exit(1);
+				}
+			}
+		}
+		if(dup2(backup_stdin,0)==-1) // restore stdin
+		{
+			perror("dup2_restore0");
+			exit(1);
+		}
+		if(dup2(backup_stdout,1)==-1)//restore stdout
+		{
+			perror("dup2_restore1");
+			exit(1);
+		}
+
+		vector<char *> argv2(v[tempindex].size()+1);
+		for (unsigned k = 0; k < v[tempindex].size(); ++k)
+		{
+			argv2[k] = &v[tempindex][k][0];
+		}
+		if (execvp(v[tempindex][0].c_str(), argv2.data()) == -1)
+		{
+			perror("execvp");
+			exit(1);
+		}
+	}
+
+	return ret+pipecount;
+}
 void execute(vector<vector<string> > &v, vector<int> &q)
 {
 	int currconnector, childstatus, pid;
@@ -347,6 +454,20 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		else
 		{
 			currconnector = 0;
+		}
+
+		if (currconnector == 3) // piping (may be more than 1!)
+		{
+			int ioffset = pipe_s(v,q,i);
+			if (ioffset == -1)
+			{
+				return; // error
+			}
+			else
+			{
+				i+= ioffset;
+				continue; // done with this loop
+			}
 		}
 		if (currconnector == 4) // inputredir
 		{

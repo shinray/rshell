@@ -41,5 +41,5 @@ and ignored
 CURRENT BUGS:
 --------------------
 * `&` is considered a connector and is regex'd out.
-* redirection not implemented for |
+* piping '|' doesn't work
 * redirecting < and > and >> to an empty file "" causes segfaulg
