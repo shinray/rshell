@@ -1,0 +1,107 @@
+Script started on Mon 09 Feb 2015 12:05:07 AM PST
+~
+skuo004@hammer $ bin/ls
+bash: bin/ls: No such file or directory
+~
+skuo004@hammer $ ls
+[0m[01;34mCS014[0m/  [01;34mCS061[0m/  [01;34mcs100[0m/  [01;34mDesktop[0m/  [01;34mDownloads[0m/
+[m~
+skuo004@hammer $ cd cs100/hw[K[Kr[Krshell/rshell/[K
+~/cs100/rshell/rshell
+skuo004@hammer $ bin /ls[K[K[K[K/ls
+LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -a
+./	../	.git/	LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -al
+drwx------ 6 skuo004 classes   4096 Mon Feb  9 00:01:33 2015
+ .
+drwx------ 3 skuo004 classes   4096 Sun Feb  8 15:36:47 2015
+ .
+drwx------ 8 skuo004 classes   4096 Sun Feb  8 23:59:36 2015
+ .
+-rw------- 1 skuo004 classes  18025 Sun Feb  8 15:36:49 2015
+ .
+-rw------- 1 skuo004 classes    208 Sun Feb  8 23:57:33 2015
+ .
+-rw------- 1 skuo004 classes   1363 Sun Feb  8 23:29:39 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 16:07:38 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 15:36:49 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 23:56:06 2015
+ .
+-rw------- 1 skuo004 classes      0 Mon Feb  9 00:01:33 2015
+ .
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -al[K[Kla
+drwx------ 6 skuo004 classes   4096 Mon Feb  9 00:01:33 2015
+ .
+drwx------ 3 skuo004 classes   4096 Sun Feb  8 15:36:47 2015
+ .
+drwx------ 8 skuo004 classes   4096 Sun Feb  8 23:59:36 2015
+ .
+-rw------- 1 skuo004 classes  18025 Sun Feb  8 15:36:49 2015
+ .
+-rw------- 1 skuo004 classes    208 Sun Feb  8 23:57:33 2015
+ .
+-rw------- 1 skuo004 classes   1363 Sun Feb  8 23:29:39 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 16:07:38 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 15:36:49 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 23:56:06 2015
+ .
+-rw------- 1 skuo004 classes      0 Mon Feb  9 00:01:33 2015
+ .
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -la[K[KR
+LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -R[Kaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+./	../	.git/	LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Ksrc/[K
+LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bin[K[K[Kbin/ls src[K[K[Ksrc/[K[K[K[Ktests[K[K[K[K[K~
+LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bi[K[Kbin/ls ~[K---------------
+LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls ---------------[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-abcd
+./	../	.git/	LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -abcd[K[K[K[KalR
+drwx------ 6 skuo004 classes   4096 Mon Feb  9 00:01:33 2015
+ .
+drwx------ 3 skuo004 classes   4096 Sun Feb  8 15:36:47 2015
+ .
+drwx------ 8 skuo004 classes   4096 Sun Feb  8 23:59:36 2015
+ .
+-rw------- 1 skuo004 classes  18025 Sun Feb  8 15:36:49 2015
+ .
+-rw------- 1 skuo004 classes    208 Sun Feb  8 23:57:33 2015
+ .
+-rw------- 1 skuo004 classes   1363 Sun Feb  8 23:29:39 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 16:07:38 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 15:36:49 2015
+ .
+drwx------ 2 skuo004 classes   4096 Sun Feb  8 23:56:06 2015
+ .
+-rw------- 1 skuo004 classes      0 Mon Feb  9 00:01:33 2015
+ .
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -alR[K[K[KL
+LICENSE	Makefile	README.md	src/	tests/	bin/	ls	
+~/cs100/rshell/rshell
+skuo004@hammer $ bin/ls -L[K[K[K[K[K[K[K[K[Kquit[K[K[K[Kexit
+exit
+
+Script done on Mon 09 Feb 2015 12:07:42 AM PST

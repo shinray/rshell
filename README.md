@@ -1,4 +1,4 @@
-# rshell
+# rshell v0.2
 oh god how did this get here i am not good with computer
 =================================
 rshell Overview
@@ -38,9 +38,11 @@ and ignored
 --------------------
 CURRENT BUGS:
 --------------------
-*currently does not accept multiple commands or any kind of connectors (!!)
-*can handle spaces but not tabs
-*i am an incompetent moron
-*not finished yet
-*SEND HELP
-
+* currently does not accept multiple commands or any kind of connectors (!!)
+* can handle spaces but not tabs
+* i am an incompetent moron
+* not finished yet
+* SEND HELP
+* NEW: added own ls function
+* ls function does not yet have support for -R
+* ls function currently only works with current directory (aka bin/ls)
