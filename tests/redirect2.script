@@ -1,0 +1,77 @@
+Script started on Thu 05 Mar 2015 10:41:59 AM PST
+~
+skuo004@hammer $ cs1pp[K[K0pp[K[K0
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshe'll[K[K[K[Kell[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell[K[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (redirect) [0;36m$[0m v[Kbin/rshe'll[K[K[K[K[K[K[K[K[K[K[Kbinb[K/rshell
+$ ls s
+asdf.txt  fixlist.txt  Makefile   redirect2.script  tests
+bin	  LICENSE      README.md  src		    test.txt
+$ cat tests.tcy  xt
+cat: tests.txt: No such file or directory
+$ cat treesdry        test.txt
+total 52
+drwx------ 6 skuo004 classes  4096 Feb 25 17:47 .
+drwx------ 3 skuo004 classes  4096 Feb  8 15:36 ..
+drwx------ 2 skuo004 classes  4096 Feb 25 17:29 bin
+drwx------ 8 skuo004 classes  4096 Feb 24 05:22 .git
+-rw------- 1 skuo004 classes 18025 Feb  8 15:36 LICENSE
+-rw------- 1 skuo004 classes   250 Feb 24 05:02 Makefile
+-rw------- 1 skuo004 classes  1377 Feb 24 05:02 README.md
+drwx------ 2 skuo004 classes  4096 Feb 24 05:21 src
+drwx------ 2 skuo004 classes  4096 Feb 24 05:22 tests
+-rw------- 1 skuo004 classes     0 Feb 25 17:47 test.txt
+the quick brown fox
+the quick brown fox!!
+the quick brown fox!
+$ echo tetem     gifts       output reduction      irecton   witoy     without space>test.txt
+$ cat test.txt
+output redirecton without space
+$ echo photo output reddit   ir w append>>test.txt
+$ cat test.txt
+output redirecton without space
+photoutput redir append
+$ ls|free    grep        -l  |gee  eep    grep x||
+-rwx------ 1 skuo004 classes     5 Mar  5 09:47 asdf.txt
+drwx------ 2 skuo004 classes  4096 Feb 25 17:29 bin
+-rw------- 1 skuo004 classes   106 Mar  5 09:52 fixlist.txt
+drwx------ 2 skuo004 classes  4096 Feb 24 05:21 src
+drwx------ 2 skuo004 classes  4096 Feb 24 05:22 tests
+-rw------- 1 skuo004 classes    56 Mar  5 10:50 test.txt
+$ ls -l  |hdd   grep x|tail -3
+drwx------ 2 skuo004 classes  4096 Feb 24 05:21 src
+drwx------ 2 skuo004 classes  4096 Feb 24 05:22 tests
+-rw------- 1 skuo004 classes    56 Mar  5 10:50 test.txt
+$ cat     ls s  cat fixlist.t, xt
+output>>to file
+output without space> >>
+multiple pipes
+pipingw ithout space
+input, output, and pipe(?)
+:
+$ exit
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (redirect) [0;36m$[0m exit
+exit
+~
+skuo004@hammer $ exit
+exit
+
+Script done on Thu 05 Mar 2015 10:59:06 AM PST
