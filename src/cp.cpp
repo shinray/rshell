@@ -64,6 +64,14 @@ void cpy1(char* src, char* destination) //FIXME src is const
             perror("write");
         }
     }
+    if (close(fdsrc)== -1)
+    {
+	perror("close");
+    }
+    if ((close(fddest) == -1))
+    {
+	perror("close");
+    }
 }
 
 void cpy2(char* src, char* destination) //FIXME src is const
@@ -89,6 +97,15 @@ void cpy2(char* src, char* destination) //FIXME src is const
         {
             perror("write");
         }
+    }
+
+    if (close(fdsrc)== -1)
+    {
+	perror("close");
+    }
+    if ((close(fddest) == -1))
+    {
+	perror("close");
     }
 }
 int main(int argc, char **argv)
