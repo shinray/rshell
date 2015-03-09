@@ -78,6 +78,10 @@ void checkargs(int argcc, char *argvv[], vector<char*> &vfiles, vector<char*> &v
 
 void print(char *dir, bool recursion, bool showhidden, bool first) // ls without -l
 {
+	if (recursion || !(first))
+	{
+		cout << "whoops" << endl; //broken atm
+	}
 	DIR *dirp = opendir(dir); // opendir
 	if (dirp == NULL)
 	{
@@ -133,6 +137,10 @@ void print(char *dir, bool recursion, bool showhidden, bool first) // ls without
 
 void printlong(char *dir, bool recursion, bool showhidden, bool first) // ls with -l
 {
+	if (recursion || !(first) || showhidden)
+	{
+		cout << "whoops" << endl; //broken atm
+	}
 	DIR *dirp = opendir(dir);
 	if (dirp == NULL)
 	{

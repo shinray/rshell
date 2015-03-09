@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <signal.h> // to catch signals
 //#include <uinordered_map> //hash table for storing paused jobs
+#include <limits.h> //needed for HOST_NAME_MAX
 
 using namespace std;
 
@@ -120,7 +121,7 @@ void searchforpath(string cmdname, char **cmdWithArgs) // might as well make cmd
 	}
 }
 
-int output_redir(vector<vector<string> > &v, vector<int> &q, int index)
+int output_redir(vector<vector<string> > &v, int index)
 {
 	int ret = 1;
 	unsigned tempindex = index;
@@ -202,7 +203,7 @@ int output_redir(vector<vector<string> > &v, vector<int> &q, int index)
 	return ret+1;
 }
 
-int output_append(vector<vector<string> > &v, vector<int> &q, int index)
+int output_append(vector<vector<string> > &v, int index)
 {
 	int ret = 1;
 	unsigned tempindex = index;
@@ -284,7 +285,7 @@ int output_append(vector<vector<string> > &v, vector<int> &q, int index)
 	return ret+1;
 }
 
-int input_redir(vector<vector<string> > &v, vector<int> &q, int index)
+int input_redir(vector<vector<string> > &v, int index)
 {
 	int ret = 1;
 	unsigned tempindex = index;
@@ -699,7 +700,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		}
 		if (currconnector == 4) // inputredir
 		{
-			int ioffset = input_redir(v,q,i);
+			int ioffset = input_redir(v,i);
 			if (ioffset == -1)
 			{
 				return; //error
@@ -712,7 +713,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		}
 		if (currconnector == 5) // outputredir
 		{
-			int ioffset = output_redir(v,q,i);
+			int ioffset = output_redir(v,i);
 			if (ioffset == -1)
 			{
 				return; // file does not exist
@@ -725,7 +726,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		}
 		if (currconnector == 6) // output append
 		{
-			int ioffset = output_append(v,q,i);
+			int ioffset = output_append(v,i);
 			if (ioffset == -1)
 			{
 				return; //error
@@ -868,11 +869,29 @@ int main()
 		exit(1);
 	}
 	
+	char *username = getlogin();
+	if (username == NULL)
+	{
+		perror("getlogin()");
+		exit(1);
+	}
+	char machinename[HOST_NAME_MAX]; //internet said that unix hostnames are limited to 255
+	if (gethostname(machinename, sizeof machinename) == -1)
+	{
+		perror("gethostname");
+		exit(1);
+	}
+	string myhostname = machinename;
+	if (myhostname.find('.') != string::npos)
+	{
+		myhostname.resize(myhostname.find('.'));
+	}
+	
 	while (1)
 	{
 		mainpid = getpid(); //identify this process as our main, so we can't interrupt or pause it
 		string input;
-		cout << mycwd() << " $ ";
+		cout << username << '@' << myhostname << ":"<< mycwd() << " $ ";
 		getline(cin,input);
 		if (input == "exit")
 		{
