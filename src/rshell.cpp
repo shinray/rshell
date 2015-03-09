@@ -14,10 +14,12 @@
 #include <queue>
 #include <stdlib.h>
 #include <signal.h> // to catch signals
+//#include <uinordered_map> //hash table for storing paused jobs
 
 using namespace std;
 
 int mainpid; // store the pid for the shell, if it's not this then we don't care
+int pausedpid = -1;
 
 void sighandler(int i) // FIXME: do something crazy
 {
@@ -31,8 +33,8 @@ void sighandler(int i) // FIXME: do something crazy
 				perror("kill(SIGINT)");
 			}
 		}
-		else //not child, do nothing
-			return;
+		// else //not child, do nothing
+			// return;
 	}
 	if(i == SIGTSTP) // pause foreground process, return to shell
 	{
@@ -42,9 +44,10 @@ void sighandler(int i) // FIXME: do something crazy
 			{
 				perror("kill(SIGTSTP)");
 			}
+			pausedpid = callerpid; //store pid
 		}
-		else
-			return; // will also require fg and bg
+		// else
+			// return; // will also require fg and bg
 	}
 }
 
@@ -75,6 +78,18 @@ void searchforpath(string cmdname, char **cmdWithArgs) // might as well make cmd
 		execv(currentPath.c_str(), cmdWithArgs); //most likely we're gonna get a bunch of fails so we only
 	}
 	perror("execv"); // perror if ALL fail
+}
+
+string mycwd()
+{
+	char buffer[BUFSIZ];
+	string ret = getcwd(buffer, BUFSIZ);
+	if (ret.empty())
+	{
+		perror("getcwd");
+	}
+	
+	return ret;
 }
 
 int output_redir(vector<vector<string> > &v, vector<int> &q, int index)
@@ -552,10 +567,82 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 			}
 			else
 			{
-				if(chdir(v[i][1].c_str())== -1)
+				if (v[i][1].front() == '/') //full path
 				{
-					perror("chdir");
-					return;
+					if(chdir(v[i][1].c_str())== -1)
+					{
+						perror("chdir");
+						return;
+					}
+				}
+				else if (v[i][1].front() == '~') // homedir
+				{
+					string newpath = getenv("HOME") + v[i][1].substr(1);
+					if (chdir(newpath.c_str()) == -1) //setdir to home
+					{
+						perror("chdir(HOME)");
+						return;
+					}
+				}
+				else if (v[i][1].front() == '.') // currentdir
+				{
+					string newpath = mycwd();
+					string updir = "..";
+					if(v[i][1].compare(0,updir.length(),updir) == 0)
+					{
+						while(newpath.back() != '/')
+						{
+							newpath.pop_back();
+						}
+						newpath += v[i][1].substr(2);
+						cout << "newpath: " << newpath <<endl;
+					}
+					else
+					{
+						newpath += v[i][1].substr(1);
+					}
+					
+					if (chdir(newpath.c_str())== -1)
+					{
+						perror("chdir");
+						return;
+					}
+				}
+				else //relative path
+				{
+					string newpath = mycwd() + '/' + v[i][1];
+					if(chdir(newpath.c_str())== -1)
+					{
+						perror("chdir");
+						return;
+					}
+				}
+				
+			}
+			continue;
+		}
+		if (v[i][0] == "fg")
+		{
+			if (pausedpid != -1)
+			{
+				if(kill(pausedpid,SIGCONT) == -1)//continue
+				{
+					perror("kill(SIGCONT)");
+				}
+			}
+			if(waitpid(pausedpid,&childstatus,WNOHANG)==-1)
+			{
+				perror("waitpid");
+			}
+			continue;
+		}
+		if (v[i][0] == "bg")
+		{
+			if (pausedpid != -1)
+			{
+				if(kill(pausedpid,SIGCONT) == -1)//continue
+				{
+					perror("kill(SIGCONT)");
 				}
 			}
 			continue;

@@ -11,6 +11,9 @@ should be able to handle comments, 'AND' and
 commands ('#', '&&', '||', and ';').
 
 HEY WHATS UP BOYS GONNA ADD ME SOME REDIRECTION (SOON<sup>tm</sup>)
+* added signal catching
+* switched from execvp to execv (searches using user's PATH ENV)
+* implemented cd
 
 --------------------
 How to install
@@ -49,3 +52,4 @@ CURRENT BUGS:
 * `&` is considered a connector and is regex'd out.
 * piping '|' works, but certain combinations of piping and redirection fail to create new files when necessary
 * redirecting < and > and >> to an empty file "" causes segfault
+* ^Z is buggy, empty terminal
