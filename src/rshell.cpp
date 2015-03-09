@@ -12,66 +12,70 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <stdlib.h>
+#include <signal.h> // to catch signals
 
 using namespace std;
 
-//vector<int> connectorlist;
-//int argCount = 0;
+int mainpid; // store the pid for the shell, if it's not this then we don't care
 
-/*void dostuff(char **todolist, int sz)
+void sighandler(int i) // FIXME: do something crazy
 {
-	int count = 0; // I need to stop randomly using unsigned it's mroe trouble than its worth
-	char **cmd;
-	cmd = new char *[argCount+1];
+	int callerpid = getpid();
+	if(i == SIGINT) // quit current job, not quit shell
+	{
+		if (callerpid != mainpid) // if child
+		{
+			if(kill(callerpid,SIGINT)==-1) // send interrupt (^C) to child
+			{
+				perror("kill(SIGINT)");
+			}
+		}
+		else //not child, do nothing
+			return;
+	}
+	if(i == SIGTSTP) // pause foreground process, return to shell
+	{
+		if (callerpid != mainpid) // if child
+		{
+			if (kill(callerpid,SIGTSTP) == -1) // pause child process
+			{
+				perror("kill(SIGTSTP)");
+			}
+		}
+		else
+			return; // will also require fg and bg
+	}
+}
+
+void searchforpath(string cmdname, char **cmdWithArgs) // might as well make cmdname a string, since I'm converting it to a string here, then converting it BACK to a cstring. Do it all here
+{
+	vector<string> userpaths;
+	string env = getenv("PATH"); // returns the user's PATH environment variable, separated by colons, terminated by '.'
 	
-	while (count != sz)
+	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+	boost::char_separator<char> colonsep(":"); // $PATH s are separated by colons
+	tokenizer tokens(env, colonsep);
+	for (tokenizer::iterator tok_iter = tokens.begin(); tok_iter != tokens.end(); ++tok_iter)
 	{
-		unsigned it = 0;
-		cmd[it] = strtok(todolist[count], " ");
-		while (cmd[it] != NULL)
-		{
-			it++;
-			cmd[it] = strtok(NULL, " ");
-		}
-		int pid = fork();
-		if (pid == -1)
-		{
-			perror("fork failed");
-			exit(1);
-		}
-		else if (pid == 0) // child
-		{
-			if (execvp(cmd[0],cmd) != 0)
-			{
-				perror("error in execvp");
-			}
-		}
-		else // parent
-		{
-			if (wait(0) != 0)
-			{
-				perror("waiting for child process");
-				exit(1);
-			}
-			count++;
-		}
+		userpaths.push_back(*tok_iter);
 	}
-}*/
-
-/*int maxstrlength(vector<string> &v)
-{
-	int ret = 0;
-	for (unsigned i = 0; i < v.size(); ++i)
+	
+	//path is terminated in a '.' so I need to find and delete this thing
+	
+	if(userpaths.back().back() == '.')
 	{
-		int temp = v[i].size();
-		if (temp > ret)
-		{
-			ret = temp;
-		}
+		userpaths.back().pop_back(); // requires c++11, will need to modify make
 	}
-
-	return ret;
-}*/
+	
+	string currentPath;
+	for (unsigned i = 0; i < userpaths.size(); ++i)
+	{
+		currentPath = userpaths.at(i) + '/' + cmdname;
+		execv(currentPath.c_str(), cmdWithArgs); //most likely we're gonna get a bunch of fails so we only
+	}
+	perror("execv"); // perror if ALL fail
+}
 
 int output_redir(vector<vector<string> > &v, vector<int> &q, int index)
 {
@@ -124,11 +128,12 @@ int output_redir(vector<vector<string> > &v, vector<int> &q, int index)
 		}
 		else if (pid == 0) // child
 		{
-			if (execvp(v[index][0].c_str(), argv.data()) == -1)
-			{
-				perror("execvp");
-				exit(1);
-			}
+			searchforpath(v[index][0], argv.data());
+			// if (execvp(v[index][0].c_str(), argv.data()) == -1)
+			// {
+				// perror("execvp");
+				// exit(1);
+			// }
 		}
 		else //parent
 		{
@@ -205,11 +210,12 @@ int output_append(vector<vector<string> > &v, vector<int> &q, int index)
 		}
 		else if (pid == 0)
 		{
-			if (execvp(v[index][0].c_str(),argv.data()) == -1)
-			{
-				perror("Execvp");
-				exit(1);
-			}
+			searchforpath(v[index][0],argv.data());
+			// if (execvp(v[index][0].c_str(),argv.data()) == -1)
+			// {
+				// perror("Execvp");
+				// exit(1);
+			// }
 		}
 		else
 		{
@@ -286,11 +292,12 @@ int input_redir(vector<vector<string> > &v, vector<int> &q, int index)
 		}
 		else if (pid == 0)
 		{
-			if (execvp(v[index][0].c_str(),argv.data()) == -1)
-			{
-				perror("Execvp");
-				exit(1);
-			}
+			searchforpath(v[index][0], argv.data());
+			// if (execvp(v[index][0].c_str(),argv.data()) == -1)
+			// {
+				// perror("Execvp");
+				// exit(1);
+			// }
 		}
 		else
 		{
@@ -425,12 +432,13 @@ int pipe_s(vector<vector<string> > &v, vector<int> &q, int index)
 						exit(1);
 					}
 				}
-				if (execvp(v[i][0].c_str(),argv.data()) == -1) //transform here into command
-					{
-						perror("Execvp");
-						exit(1);
-					}	
-					cerr << "this did not just happen" << endl;
+				searchforpath(v[index][0],argv.data());
+				// if (execvp(v[i][0].c_str(),argv.data()) == -1) //transform here into command
+					// {
+						// perror("Execvp");
+						// exit(1);
+					// }	
+					// cerr << "this did not just happen" << endl;
 			}
 			else //parent
 			{
@@ -527,7 +535,31 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 			perror("pipe2 fail");
 			exit(1);
 		}*/
-
+		if (v[i][0] == "exit")
+		{
+			exit(0);
+		}
+		if (v[i][0] == "cd")
+		{
+			if (v[i].size() < 2) // no directory specified
+			{
+				if (chdir(getenv("HOME")) == -1) //setdir to home
+				{
+					perror("chdir(HOME)");
+					return;
+				}
+				// cerr << "Error: no target directory specified." << endl;
+			}
+			else
+			{
+				if(chdir(v[i][1].c_str())== -1)
+				{
+					perror("chdir");
+					return;
+				}
+			}
+			continue;
+		}
 		if (i < q.size()) // if there are no more connectors
 		{
 			currconnector = q.at(i);
@@ -604,11 +636,12 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		}
 		else if (pid == 0) //child
 		{
-			if (execvp(v[i][0].c_str(), argv.data()) == -1) // syscall execvp
-			{
-				perror("execvp fail"); // perror execvp
-				exit(1);
-			}
+			// if (execvp(v[i][0].c_str(), argv.data()) == -1) // syscall execvp
+			// {
+				// perror("execvp fail"); // perror execvp
+				// exit(1);
+			// }
+			searchforpath(v[i][0], argv.data());
 		}
 		else //parent
 		{
@@ -637,13 +670,7 @@ vector<vector<string> > parse(string &cmdstr, vector<int> &cmdq)
 	const string inconnector = "<"; // 4
 	const string outconnector = ">"; // 5
 	const string appconnector = ">>"; // 6
-
-	if (cmdstr.find(endconnector)!= string::npos)
-	{
-		cmdq.push(0);
-	}
 	*/
-	//bool alreadyWord = false;
 	vector<string> vtoken;
 	for (unsigned i = 0; i < cmdstr.size(); ++i)
 	{
@@ -684,15 +711,6 @@ vector<vector<string> > parse(string &cmdstr, vector<int> &cmdq)
 				cmdq.push_back(5); //out
 			}
 		}
-		/*else if (cmdstr[i] == ' ')
-		{
-			alreadyWord = false;
-		}
-		else if (cmdstr[i] != ' ' && !alreadyWord)
-		{
-			alreadyWord = true;
-			argCount++;
-		}*/
 	}
 	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
 	boost::char_separator<char> sep(";&|<>"); // connectors
@@ -724,8 +742,20 @@ vector<vector<string> > parse(string &cmdstr, vector<int> &cmdq)
 
 int main()
 {
+	if(SIG_ERR == signal(SIGINT, sighandler)) //catch ^C
+	{
+		perror("signal(SIGINT)");
+		exit(1);
+	}
+	if(signal(SIGTSTP, sighandler) == SIG_ERR) //catch ^Z
+	{
+		perror("signal(SIGTSTP)");
+		exit(1);
+	}
+	
 	while (1)
 	{
+		mainpid = getpid(); //identify this process as our main, so we can't interrupt or pause it
 		string input;
 		cout << "$ ";
 		getline(cin,input);
@@ -739,33 +769,7 @@ int main()
 			vector<int> connectorq;
 			vector<vector<string> > cmdv = parse(input, connectorq);
 			execute(cmdv, connectorq);
-			/*for (unsigned i = 0; i < cmdv.size(); ++i)
-			{
-				for(unsigned j = 0; j < cmdv[i].size(); ++j)
-				{
-					cout << i << j << ' ' << cmdv[i][j] << '\n';
-				}
-			}*/
-			
-			//char *cstylestring = new char[input.length()+1];
-			//strcpy(cstylestring,input.c_str());
-			//cstylestring = strtok(cstylestring, "#");
-			//parse(cstylestring);
-			// I need some kind of thingy here, like an array of arrays.
-			/*char** commandQueue;
-			commandQueue = new char* [input.length()+1];
-			int size = 0;
-			//commandQueue[size] = strtok(cstylestring, ";|&");
-			while(commandQueue[size] != NULL)
-			{
-				++size;
-				commandQueue[size] = strtok(NULL, ";|&");
-			}
-			dostuff(commandQueue, size);
-			*/
 		}
-		//connectorlist.clear();
-		//argCount = 0;
 	}
 	return 0;
 }
