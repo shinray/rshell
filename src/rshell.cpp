@@ -125,7 +125,7 @@ int output_redir(vector<vector<string> > &v, int index)
 {
 	int ret = 1;
 	unsigned tempindex = index;
-	if (tempindex >= v.size())
+	if (tempindex >= v.size()-1)
 	{
 		cerr << "syntax error: no target file" << endl;
 		return -1;
@@ -289,7 +289,7 @@ int input_redir(vector<vector<string> > &v, int index)
 {
 	int ret = 1;
 	unsigned tempindex = index;
-	if (tempindex >= v.size())
+	if (tempindex >= v.size()-1)
 	{
 		cerr << "syntax error: no target file" << endl;
 		return -1;
