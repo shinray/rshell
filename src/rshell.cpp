@@ -11,7 +11,7 @@
 #include <boost/algorithm/string/regex.hpp>
 #include <vector>
 #include <string>
-#include <queue>
+//#include <queue>
 #include <stdlib.h>
 #include <signal.h> // to catch signals
 //#include <uinordered_map> //hash table for storing paused jobs
@@ -46,6 +46,7 @@ void sighandler(int i) // FIXME: do something crazy
 				perror("kill(SIGTSTP)");
 			}
 			pausedpid = callerpid; //store pid
+			cout << "paused child with pid " << callerpid <<endl;
 		}
 		// else
 			// return; // will also require fg and bg
@@ -654,12 +655,13 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		{
 			if (pausedpid != -1)
 			{
+				cout << "fg detected" << endl;
 				if(kill(pausedpid,SIGCONT) == -1)//continue
 				{
 					perror("kill(SIGCONT)");
 				}
 			}
-			if(waitpid(pausedpid,&childstatus,WNOHANG)==-1)
+			if(waitpid(pausedpid,&childstatus,WUNTRACED)==-1)
 			{
 				perror("waitpid");
 			}
@@ -761,7 +763,8 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 		}
 		else //parent
 		{
-			if (wait(&childstatus) == -1) // wait syscall
+			//if (wait(&childstatus) == -1) // wait syscall
+			if (waitpid(pid, &childstatus, WUNTRACED)==-1)
 			{
 				perror("wait for child fail"); // wait perror
 				exit(1);

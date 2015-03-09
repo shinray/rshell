@@ -1,0 +1,1724 @@
+Script started on Mon 09 Mar 2015 03:42:42 PM PDT
+~
+skuo004@hammer $ cd[Ks100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+cc[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell/rshell
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (hw3) [0;36m$[0m cpppch[K[K[Kcheck -[Krshell[K[K[K[K[K[K[Ksr[K[K src/rshell.cpp
+Checking src/rshell.cpp...
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (hw3) [0;36m$[0m valgrind s[Kbin/rshell
+==48518== Memcheck, a memory error detector
+==48518== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==48518== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==48518== Command: bin/rshell
+==48518== 
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ru  ls # #command with              
+asdf.txt  fixlist.txt  Makefile.BACKUP.28570  Makefile.REMOTE.28570  tests
+bin	  LICENSE      Makefile.BASE.28570    README.md		     test.txt
+echo	  Makefile     Makefile.LOCAL.28570   src
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ls -al
+total 72
+drwx------ 6 skuo004 classes  4096 Mar  9 05:09 .
+drwx------ 3 skuo004 classes  4096 Feb  8 15:36 ..
+-rwx------ 1 skuo004 classes     5 Mar  5 09:47 asdf.txt
+drwx------ 2 skuo004 classes  4096 Mar  9 14:07 bin
+-rwx------ 1 skuo004 classes     5 Mar  9 04:00 echo
+-rw------- 1 skuo004 classes   106 Mar  5 09:52 fixlist.txt
+drwx------ 8 skuo004 classes  4096 Mar  9 05:09 .git
+-rw------- 1 skuo004 classes 18025 Feb  8 15:36 LICENSE
+-rw------- 1 skuo004 classes   282 Mar  8 22:42 Makefile
+-rw------- 1 skuo004 classes   496 Mar  6 14:58 Makefile.BACKUP.28570
+-rw------- 1 skuo004 classes   135 Mar  6 14:59 Makefile.BASE.28570
+-rw------- 1 skuo004 classes   208 Mar  6 14:59 Makefile.LOCAL.28570
+-rw------- 1 skuo004 classes   250 Mar  6 14:59 Makefile.REMOTE.28570
+-rw------- 1 skuo004 classes  1659 Mar  9 05:09 README.md
+drwx------ 2 skuo004 classes  4096 Mar  9 14:44 src
+drwx------ 2 skuo004 classes  4096 Mar  9 15:38 tests
+-rw------- 1 skuo004 classes    56 Mar  5 10:50 test.txt
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ls -aaaaaaaaa        -a a -a a-a          - a -a a-  -a l -l -r src te  tests bin ../../lab7 8 ../../lab7
+tests:
+total 496
+-rw------- 1 skuo004 classes   4875 Mar  9 02:25 signal.script
+-rw------- 1 skuo004 classes   5120 Mar  6 15:06 redirect2.script
+-rw------- 1 skuo004 classes  18075 Mar  6 15:06 redirect
+-rw------- 1 skuo004 classes 438749 Mar  6 15:06 ls_valgrind_and_cppcheck
+-rw------- 1 skuo004 classes   4090 Mar  6 15:06 ls
+-rw------- 1 skuo004 classes      0 Mar  9 15:38 hw0reshow.script
+-rw------- 1 skuo004 classes   9359 Feb  8 15:36 exec.script
+drwx------ 6 skuo004 classes   4096 Mar  9 05:09 ..
+drwx------ 2 skuo004 classes   4096 Mar  9 15:38 .
+
+src:
+total 404
+-rw------- 1 skuo004 classes   1919 Feb 19 20:49 Timer.h
+-rw------- 1 skuo004 classes     26 Feb 23 16:26 test.txt
+-rwx------ 1 skuo004 classes      0 Feb 24 05:16 testfile2.txt
+-rw------- 1 skuo004 classes      0 Feb 24 05:21 test4.txt
+-rw------- 1 skuo004 classes      6 Feb 24 05:15 test3
+-rwx------ 1 skuo004 classes     26 Mar  6 14:53 test2.txt
+-rw------- 1 skuo004 classes  18377 Mar  9 14:28 rshell.cpp_BACKUP
+-rw------- 1 skuo004 classes  18377 Mar  9 14:04 rshell.cpp
+-rwx------ 1 skuo004 classes  70569 Mar  6 14:51 mycp
+-rw------- 1 skuo004 classes   6120 Mar  9 11:21 ls.cpp
+-rw------- 1 skuo004 classes      6 Feb 24 05:20 hellotest.txt
+-rw------- 1 skuo004 classes   4197 Mar  6 15:06 cp.cpp
+-rwx------ 1 skuo004 classes 261478 Feb 24 05:07 a.out
+drwx------ 6 skuo004 classes   4096 Mar  9 05:09 ..
+drwx------ 2 skuo004 classes   4096 Mar  9 14:44 .
+
+../../lab8:
+total 12
+-rwx--x--x  1 skuo004 classes 1010 Mar  9 13:36 sendspam.sh
+drwx------ 12 skuo004 classes 4096 Mar  9 10:49 ..
+drwx------  2 skuo004 classes 4096 Mar  9 13:44 .
+
+../../lab7:
+total 204
+-rw-------  1 skuo004 classes      0 Mar  2 14:14 test5.txt
+-rw-------  1 skuo004 classes      0 Mar  2 14:14 test4.txt
+-rw-------  1 skuo004 classes      0 Mar  2 14:14 test3.txt
+drwx------  2 skuo004 classes   4096 Mar  2 14:14 test3
+-rw-------  1 skuo004 classes      0 Mar  2 14:14 test2.txt
+drwx------  2 skuo004 classes   4096 Mar  2 14:16 test2
+drwx------  3 skuo004 classes   4096 Mar  2 14:14 test1
+-rw-------  1 skuo004 classes      0 Mar  2 14:14 test0.txt
+-rw-------  1 skuo004 classes   2807 Mar  2 13:21 rm.cpp
+-rwx------  1 skuo004 classes 119486 Mar  2 13:21 myrm
+-rwx------  1 skuo004 classes  41663 Mar  2 14:08 mymv
+-rw-------  1 skuo004 classes   1167 Mar  2 14:10 mv.cpp
+-rw-------  1 skuo004 classes   7761 Mar  2 14:16 lab7
+drwx------ 12 skuo004 classes   4096 Mar  9 10:49 ..
+drwx------  5 skuo004 classes   4096 Mar  2 14:19 .
+
+bin:
+total 152
+-rwx------ 1 skuo004 classes 102462 Mar  9 14:07 rshell
+-rwx------ 1 skuo004 classes  36797 Mar  9 14:07 ls
+drwx------ 6 skuo004 classes   4096 Mar  9 05:09 ..
+drwx------ 2 skuo004 classes   4096 Mar  9 14:07 .
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ / /bin/ls
+asdf.txt  fixlist.txt  Makefile.BACKUP.28570  Makefile.REMOTE.28570  tests
+bin	  LICENSE      Makefile.BASE.28570    README.md		     test.txt
+echo	  Makefile     Makefile.LOCAL.28570   src
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ cd ../../tests 
+skuo004@hammer:/class/classes/skuo004/cs100/test $ ls
+chdir.cpp	       test_18.txt  test_33.txt  test_49.txt  test_64.txt
+chdirtest	       test_19.txt  test_34.txt  test_4.txt   test_65.txt
+gitlearn	       test_1.txt   test_35.txt  test_50.txt  test_66.txt
+infloop.cpp	       test_20.txt  test_36.txt  test_51.txt  test_67.txt
+infloop.o	       test_21.txt  test_37.txt  test_52.txt  test_68.txt
+redirect	       test_22.txt  test_38.txt  test_53.txt  test_69.txt
+rshell		       test_23.txt  test_39.txt  test_54.txt  test_6.txt
+stringpopbacktest.cpp  test_24.txt  test_3.txt	 test_55.txt  test_7.txt
+stringtest.o	       test_25.txt  test_40.txt  test_56.txt  test_8.txt
+test_10.txt	       test_26.txt  test_41.txt  test_57.txt  test_9.txt
+test_11.txt	       test_27.txt  test_42.txt  test_58.txt  testfile
+test_12.txt	       test_28.txt  test_43.txt  test_59.txt  testsubdir
+test_13.txt	       test_29.txt  test_44.txt  test_5.txt   ucr-cs100
+test_14.txt	       test_2.txt   test_45.txt  test_60.txt
+test_15.txt	       test_30.txt  test_46.txt  test_61.txt
+test_16.txt	       test_31.txt  test_47.txt  test_62.txt
+test_17.txt	       test_32.txt  test_48.txt  test_63.txt
+skuo004@hammer:/class/classes/skuo004/cs100/test $ st  stringtest.o
+before: abcdefg!
+after: abcdefg
+skuo004@hammer:/class/classes/skuo004/cs100/test $ s walerrasef
+execv: No such file or directory
+skuo004@hammer:/class/classes/skuo004/cs100/test $ ls -                      a-   l  -l^[[D					 -R
+ls: invalid option -- ''
+Try `ls --help' for more information.
+skuo004@hammer:/class/classes/skuo004/cs100/test $ ^[[A    ls -a             a -				l                         0R
+ls: cannot access -: No such file or directory
+ls: cannot access a: No such file or directory
+ls: cannot access -: No such file or directory
+ls: cannot access l: No such file or directory
+ls: cannot access 0R: No such file or directory
+skuo004@hammer:/class/classes/skuo004/cs100/test $ ls                        -a                      -l					-R
+.:
+total 104
+drwx------  7 skuo004 classes  4096 Mar  8 23:24 .
+drwx------ 12 skuo004 classes  4096 Mar  9 10:49 ..
+-rw-------  1 skuo004 classes   202 Mar  8 21:27 chdir.cpp
+-rwx------  1 skuo004 classes 31767 Mar  8 20:36 chdirtest
+drwx------  4 skuo004 classes  4096 Feb 24 05:28 gitlearn
+-rw-------  1 skuo004 classes   235 Mar  8 23:23 infloop.cpp
+-rwx------  1 skuo004 classes  8699 Mar  8 23:24 infloop.o
+drwx------  3 skuo004 classes  4096 Feb 22 16:10 redirect
+drwx------  6 skuo004 classes  4096 Feb 24 05:26 rshell
+-rw-------  1 skuo004 classes   202 Mar  7 20:30 stringpopbacktest.cpp
+-rwx------  1 skuo004 classes 14529 Mar  7 20:33 stringtest.o
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_10.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_11.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_12.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_13.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_14.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_15.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_16.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_17.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_18.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_19.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_1.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_20.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_21.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_22.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_23.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_24.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_25.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_26.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_27.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_28.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_29.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_2.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_30.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_31.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_32.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_33.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_34.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_35.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_36.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_37.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_38.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_39.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_3.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_40.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_41.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_42.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_43.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_44.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_45.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_46.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_47.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_48.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_49.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_4.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_50.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_51.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_52.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_53.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_54.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_55.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_56.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_57.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_58.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_59.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_5.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_60.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_61.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_62.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_63.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_64.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_65.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_66.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_67.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_68.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_69.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_6.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_7.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_8.txt
+-rw-------  1 skuo004 classes     0 Feb  8 17:22 test_9.txt
+-rw-------  1 skuo004 classes    93 Mar  1 22:03 testfile
+drwx------  2 skuo004 classes  4096 Mar  1 22:32 testsubdir
+drwx------  9 skuo004 classes  4096 Feb 24 05:27 ucr-cs100
+
+./gitlearn:
+total 32
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 7 skuo004 classes 4096 Mar  8 23:24 ..
+drwx------ 8 skuo004 classes 4096 Feb 24 05:28 .git
+-rw------- 1 skuo004 classes  238 Feb 24 05:28 .gitignore
+-rw------- 1 skuo004 classes  645 Feb 24 05:28 LICENSE
+-rw------- 1 skuo004 classes 4818 Feb 24 05:28 README.md
+drwx------ 3 skuo004 classes 4096 Mar  9 12:05 scripts
+
+./gitlearn/.git:
+total 48
+drwx------ 8 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 branches
+-rw------- 1 skuo004 classes  267 Feb 24 05:28 config
+-rw------- 1 skuo004 classes   73 Feb 24 05:28 description
+-rw------- 1 skuo004 classes   23 Feb 24 05:28 HEAD
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 hooks
+-rw------- 1 skuo004 classes 1464 Feb 24 05:28 index
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 info
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 logs
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 objects
+-rw------- 1 skuo004 classes  107 Feb 24 05:28 packed-refs
+drwx------ 5 skuo004 classes 4096 Feb 24 05:28 refs
+
+./gitlearn/.git/branches:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:28 ..
+
+./gitlearn/.git/hooks:
+total 48
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:28 ..
+-rwx------ 1 skuo004 classes  452 Feb 24 05:28 applypatch-msg.sample
+-rwx------ 1 skuo004 classes  896 Feb 24 05:28 commit-msg.sample
+-rwx------ 1 skuo004 classes  189 Feb 24 05:28 post-update.sample
+-rwx------ 1 skuo004 classes  398 Feb 24 05:28 pre-applypatch.sample
+-rwx------ 1 skuo004 classes 1635 Feb 24 05:28 pre-commit.sample
+-rwx------ 1 skuo004 classes 1239 Feb 24 05:28 prepare-commit-msg.sample
+-rwx------ 1 skuo004 classes 1348 Feb 24 05:28 pre-push.sample
+-rwx------ 1 skuo004 classes 4951 Feb 24 05:28 pre-rebase.sample
+-rwx------ 1 skuo004 classes 3611 Feb 24 05:28 update.sample
+
+./gitlearn/.git/info:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:28 ..
+-rw------- 1 skuo004 classes  240 Feb 24 05:28 exclude
+
+./gitlearn/.git/logs:
+total 16
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:28 ..
+-rw------- 1 skuo004 classes  180 Feb 24 05:28 HEAD
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 refs
+
+./gitlearn/.git/logs/refs:
+total 16
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 heads
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 remotes
+
+./gitlearn/.git/logs/refs/heads:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 ..
+-rw------- 1 skuo004 classes  180 Feb 24 05:28 master
+
+./gitlearn/.git/logs/refs/remotes:
+total 12
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 origin
+
+./gitlearn/.git/logs/refs/remotes/origin:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 ..
+-rw------- 1 skuo004 classes  180 Feb 24 05:28 HEAD
+
+./gitlearn/.git/objects:
+total 16
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:28 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 info
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 pack
+
+./gitlearn/.git/objects/info:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:28 ..
+
+./gitlearn/.git/objects/pack:
+total 92
+drwx------ 2 skuo004 classes  4096 Feb 24 05:28 .
+drwx------ 4 skuo004 classes  4096 Feb 24 05:28 ..
+-r-------- 1 skuo004 classes  7960 Feb 24 05:28 pack-61b2f6400a5886bd49f8ebef1b68b49c6f8da0a0.idx
+-r-------- 1 skuo004 classes 73370 Feb 24 05:28 pack-61b2f6400a5886bd49f8ebef1b68b49c6f8da0a0.pack
+
+./gitlearn/.git/refs:
+total 20
+drwx------ 5 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:28 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 heads
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 remotes
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 tags
+
+./gitlearn/.git/refs/heads:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:28 ..
+-rw------- 1 skuo004 classes   41 Feb 24 05:28 master
+
+./gitlearn/.git/refs/remotes:
+total 12
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:28 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 origin
+
+./gitlearn/.git/refs/remotes/origin:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:28 ..
+-rw------- 1 skuo004 classes   32 Feb 24 05:28 HEAD
+
+./gitlearn/.git/refs/tags:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:28 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:28 ..
+
+./gitlearn/scripts:
+total 64
+drwx------ 3 skuo004 classes  4096 Mar  9 12:05 .
+drwx------ 4 skuo004 classes  4096 Feb 24 05:28 ..
+-rwx------ 1 skuo004 classes  9546 Feb 24 05:28 analyzedata.sh
+-rwx------ 1 skuo004 classes  2665 Feb 24 05:28 calcgrade.sh
+-rwx------ 1 skuo004 classes  3991 Feb 24 05:28 checksyscalls.sh
+-rwx------ 1 skuo004 classes 14078 Feb 24 05:28 config.sh
+-rwx------ 1 skuo004 classes  2175 Feb 24 05:28 gradeassignment-all.sh
+-rwx------ 1 skuo004 classes   651 Feb 24 05:28 gradeassignment-individual.sh
+-rwx------ 1 skuo004 classes  1912 Feb 24 05:28 instructortools-addgrader.sh
+-rwx------ 1 skuo004 classes  1481 Feb 24 05:28 instructortools-viewallgrades.sh
+drwx------ 3 skuo004 classes  4096 Feb 24 05:28 moss
+
+./gitlearn/scripts/moss:
+total 36
+drwx------ 3 skuo004 classes  4096 Feb 24 05:28 .
+drwx------ 3 skuo004 classes  4096 Mar  9 12:05 ..
+-rwx------ 1 skuo004 classes 10756 Feb 24 05:28 moss
+-rwx------ 1 skuo004 classes  2818 Feb 24 05:28 moss_run
+-rw------- 1 skuo004 classes  4698 Feb 24 05:28 moss.txt
+drwx------ 2 skuo004 classes  4096 Feb 24 05:28 source
+
+./gitlearn/scripts/moss/source:
+total 24
+drwx------ 2 skuo004 classes  4096 Feb 24 05:28 .
+drwx------ 3 skuo004 classes  4096 Feb 24 05:28 ..
+-rwx------ 1 skuo004 classes 10459 Feb 24 05:28 moss_script
+-rwx------ 1 skuo004 classes    67 Feb 24 05:28 moss_script_example
+
+./redirect:
+total 24
+drwx------ 3 skuo004 classes 4096 Feb 22 16:10 .
+drwx------ 7 skuo004 classes 4096 Mar  8 23:24 ..
+-rwx------ 1 skuo004 classes 8094 Feb 22 16:10 a.out
+-rw------- 1 skuo004 classes   27 Feb 22 11:55 inputfile
+-rw------- 1 skuo004 classes   27 Feb 22 11:59 output1
+-rw------- 1 skuo004 classes   27 Feb 22 11:59 output2
+-rw------- 1 skuo004 classes  562 Feb 22 16:10 test.cpp
+drwx------ 2 skuo004 classes 4096 Feb 22 13:25 testdir
+
+./redirect/testdir:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 22 13:25 .
+drwx------ 3 skuo004 classes 4096 Feb 22 16:10 ..
+
+./rshell:
+total 52
+drwx------ 6 skuo004 classes  4096 Feb 24 05:26 .
+drwx------ 7 skuo004 classes  4096 Mar  8 23:24 ..
+drwx------ 2 skuo004 classes  4096 Feb 24 05:26 bin
+drwx------ 8 skuo004 classes  4096 Feb 24 05:26 .git
+-rw------- 1 skuo004 classes 18025 Feb 24 05:26 LICENSE
+-rw------- 1 skuo004 classes   250 Feb 24 05:26 Makefile
+-rw------- 1 skuo004 classes  1377 Feb 24 05:26 README.md
+drwx------ 2 skuo004 classes  4096 Feb 24 05:26 src
+drwx------ 2 skuo004 classes  4096 Feb 24 05:26 tests
+
+./rshell/bin:
+total 100
+drwx------ 2 skuo004 classes  4096 Feb 24 05:26 .
+drwx------ 6 skuo004 classes  4096 Feb 24 05:26 ..
+-rwx------ 1 skuo004 classes 88766 Feb 24 05:26 rshell
+
+./rshell/.git:
+total 48
+drwx------ 8 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:26 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 branches
+-rw------- 1 skuo004 classes  255 Feb 24 05:26 config
+-rw------- 1 skuo004 classes   73 Feb 24 05:26 description
+-rw------- 1 skuo004 classes   41 Feb 24 05:26 HEAD
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 hooks
+-rw------- 1 skuo004 classes  648 Feb 24 05:26 index
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 info
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 logs
+drwx------ 4 skuo004 classes 4096 Feb 24 05:26 objects
+-rw------- 1 skuo004 classes  426 Feb 24 05:26 packed-refs
+drwx------ 5 skuo004 classes 4096 Feb 24 05:26 refs
+
+./rshell/.git/branches:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:26 ..
+
+./rshell/.git/hooks:
+total 48
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:26 ..
+-rwx------ 1 skuo004 classes  452 Feb 24 05:26 applypatch-msg.sample
+-rwx------ 1 skuo004 classes  896 Feb 24 05:26 commit-msg.sample
+-rwx------ 1 skuo004 classes  189 Feb 24 05:26 post-update.sample
+-rwx------ 1 skuo004 classes  398 Feb 24 05:26 pre-applypatch.sample
+-rwx------ 1 skuo004 classes 1635 Feb 24 05:26 pre-commit.sample
+-rwx------ 1 skuo004 classes 1239 Feb 24 05:26 prepare-commit-msg.sample
+-rwx------ 1 skuo004 classes 1348 Feb 24 05:26 pre-push.sample
+-rwx------ 1 skuo004 classes 4951 Feb 24 05:26 pre-rebase.sample
+-rwx------ 1 skuo004 classes 3611 Feb 24 05:26 update.sample
+
+./rshell/.git/info:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:26 ..
+-rw------- 1 skuo004 classes  240 Feb 24 05:26 exclude
+
+./rshell/.git/logs:
+total 16
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:26 ..
+-rw------- 1 skuo004 classes  332 Feb 24 05:26 HEAD
+drwx------ 4 skuo004 classes 4096 Feb 24 05:26 refs
+
+./rshell/.git/logs/refs:
+total 16
+drwx------ 4 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 heads
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 remotes
+
+./rshell/.git/logs/refs/heads:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:26 ..
+-rw------- 1 skuo004 classes  174 Feb 24 05:26 hw0
+
+./rshell/.git/logs/refs/remotes:
+total 12
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:26 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 origin
+
+./rshell/.git/logs/refs/remotes/origin:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 ..
+-rw------- 1 skuo004 classes  174 Feb 24 05:26 HEAD
+
+./rshell/.git/objects:
+total 16
+drwx------ 4 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:26 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 info
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 pack
+
+./rshell/.git/objects/info:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:26 ..
+
+./rshell/.git/objects/pack:
+total 92
+drwx------ 2 skuo004 classes  4096 Feb 24 05:26 .
+drwx------ 4 skuo004 classes  4096 Feb 24 05:26 ..
+-r-------- 1 skuo004 classes  8492 Feb 24 05:26 pack-099e39e09183557a234e688f4dc6aa7d61b5bfd5.idx
+-r-------- 1 skuo004 classes 65992 Feb 24 05:26 pack-099e39e09183557a234e688f4dc6aa7d61b5bfd5.pack
+
+./rshell/.git/refs:
+total 20
+drwx------ 5 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:26 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 heads
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 remotes
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 tags
+
+./rshell/.git/refs/heads:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:26 ..
+-rw------- 1 skuo004 classes   41 Feb 24 05:26 hw0
+
+./rshell/.git/refs/remotes:
+total 12
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:26 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 origin
+
+./rshell/.git/refs/remotes/origin:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:26 ..
+-rw------- 1 skuo004 classes   29 Feb 24 05:26 HEAD
+
+./rshell/.git/refs/tags:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:26 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:26 ..
+
+./rshell/src:
+total 32
+drwx------ 2 skuo004 classes  4096 Feb 24 05:26 .
+drwx------ 6 skuo004 classes  4096 Feb 24 05:26 ..
+-rw------- 1 skuo004 classes  3960 Feb 24 05:26 cp.cpp
+-rw------- 1 skuo004 classes 14558 Feb 24 05:26 rshell.cpp
+-rw------- 1 skuo004 classes  1919 Feb 24 05:26 Timer.h
+
+./rshell/tests:
+total 40
+drwx------ 2 skuo004 classes  4096 Feb 24 05:26 .
+drwx------ 6 skuo004 classes  4096 Feb 24 05:26 ..
+-rw------- 1 skuo004 classes  9359 Feb 24 05:26 exec.script
+-rw------- 1 skuo004 classes 18075 Feb 24 05:26 redirect
+
+./testsubdir:
+total 8
+drwx------ 2 skuo004 classes 4096 Mar  1 22:32 .
+drwx------ 7 skuo004 classes 4096 Mar  8 23:24 ..
+-rw------- 1 skuo004 classes    0 Mar  1 22:31 png.gnp
+-rw------- 1 skuo004 classes    0 Mar  1 22:31 png.txt
+-rw------- 1 skuo004 classes    0 Mar  1 22:31 txt.jpeg
+-rw------- 1 skuo004 classes    0 Mar  1 22:31 txt.jpg
+-rw------- 1 skuo004 classes    0 Mar  1 22:31 txt.png
+-rw------- 1 skuo004 classes    0 Mar  1 22:27 txttest
+-rw------- 1 skuo004 classes    0 Mar  1 22:31 txt.txt
+
+./ucr-cs100:
+total 60
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Mar  8 23:24 ..
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 assignments
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 .git
+-rw------- 1 skuo004 classes  256 Feb 24 05:27 .gitignore
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 gitlearn
+-rw------- 1 skuo004 classes   87 Feb 24 05:27 .gitmodules
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 lecture-notes
+-rw------- 1 skuo004 classes  179 Feb 24 05:27 LICENSE
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 people
+-rw------- 1 skuo004 classes 8414 Feb 24 05:27 README.md
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 textbook
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 videos
+
+./ucr-cs100/assignments:
+total 28
+drwx------  7 skuo004 classes 4096 Feb 24 05:27 .
+drwx------  9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------  6 skuo004 classes 4096 Feb 24 05:27 ec
+drwx------  7 skuo004 classes 4096 Feb 24 05:27 hw
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 lab
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 linux
+drwx------  9 skuo004 classes 4096 Feb 24 05:27 quiz
+
+./ucr-cs100/assignments/ec:
+total 24
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 ec-bounty
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 ec-online
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 ec-reading
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 ec-vim
+
+./ucr-cs100/assignments/ec/ec-bounty:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    4 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 1177 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/ec/ec-online:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    4 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 1610 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/ec/ec-reading:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    4 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes  854 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/ec/ec-vim:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    4 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes  487 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/hw:
+total 28
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 hw0-rshell
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 hw1-ls
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 hw2-piping
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 hw3-signals
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 hw4-contributing
+
+./ucr-cs100/assignments/hw/hw0-rshell:
+total 24
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes     6 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 12411 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/hw/hw1-ls:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    7 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes  529 Feb 24 05:27 ls.cpp
+-rw------- 1 skuo004 classes 5220 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/hw/hw2-piping:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    6 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 3989 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/hw/hw3-signals:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    6 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 2832 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/hw/hw4-contributing:
+total 16
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    6 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 7165 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab:
+total 48
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 .
+drwx------  7 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 lab0-vim
+drwx------  3 skuo004 classes 4096 Feb 24 05:27 lab1-git
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 lab2-fork
+drwx------  5 skuo004 classes 4096 Feb 24 05:27 lab3-gdb
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 lab4-cstring
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 lab5-cp
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 lab6-signal
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 lab7-rm
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 lab8-spam
+-rw-------  1 skuo004 classes  726 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab0-vim:
+total 28
+drwx------  2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes  4096 Feb 24 05:27 ..
+-rw-------  1 skuo004 classes    39 Feb 24 05:27 grade
+-rw-------  1 skuo004 classes  2772 Feb 24 05:27 README.md
+-rw-------  1 skuo004 classes 15091 Feb 24 05:27 terminal.md
+
+./ucr-cs100/assignments/lab/lab1-git:
+total 40
+drwx------  3 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes  4096 Feb 24 05:27 ..
+-rw-------  1 skuo004 classes     5 Feb 24 05:27 grade
+drwx------  2 skuo004 classes  4096 Feb 24 05:27 images
+-rw-------  1 skuo004 classes 25589 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab1-git/images:
+total 484
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 15057 Feb 24 05:27 10.png
+-rw------- 1 skuo004 classes 17020 Feb 24 05:27 11.png
+-rw------- 1 skuo004 classes  2759 Feb 24 05:27 1.png
+-rw------- 1 skuo004 classes  4874 Feb 24 05:27 2.png
+-rw------- 1 skuo004 classes  6856 Feb 24 05:27 3.png
+-rw------- 1 skuo004 classes  8130 Feb 24 05:27 4.png
+-rw------- 1 skuo004 classes  8152 Feb 24 05:27 5.png
+-rw------- 1 skuo004 classes  9659 Feb 24 05:27 6.png
+-rw------- 1 skuo004 classes 10931 Feb 24 05:27 7.png
+-rw------- 1 skuo004 classes 11946 Feb 24 05:27 8.png
+-rw------- 1 skuo004 classes 15298 Feb 24 05:27 9.png
+-rw------- 1 skuo004 classes 41620 Feb 24 05:27 collaborators.png
+-rw------- 1 skuo004 classes 46543 Feb 24 05:27 fork.png
+-rw------- 1 skuo004 classes 46867 Feb 24 05:27 issues.png
+-rw------- 1 skuo004 classes 52253 Feb 24 05:27 pull_request.png
+-rw------- 1 skuo004 classes 70549 Feb 24 05:27 settings.png
+-rw------- 1 skuo004 classes 47625 Feb 24 05:27 summary.png
+-rw------- 1 skuo004 classes 35571 Feb 24 05:27 watch.png
+
+./ucr-cs100/assignments/lab/lab2-fork:
+total 12
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 ..
+-rw-------  1 skuo004 classes    5 Feb 24 05:27 grade
+-rw-------  1 skuo004 classes 1159 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab3-gdb:
+total 24
+drwx------  5 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 ex1
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 ex2
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 ex3
+-rw-------  1 skuo004 classes 1515 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab3-gdb/ex1:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 1000 Feb 24 05:27 ex1.cpp
+-rw------- 1 skuo004 classes 5023 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab3-gdb/ex2:
+total 16
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 1942 Feb 24 05:27 ex2.cpp
+-rw------- 1 skuo004 classes 2797 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab3-gdb/ex3:
+total 40
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 26729 Feb 24 05:27 hbhairy-utils.tar.xz
+-rw------- 1 skuo004 classes  1915 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab4-cstring:
+total 12
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 ..
+-rw-------  1 skuo004 classes    5 Feb 24 05:27 grade
+-rw-------  1 skuo004 classes 1793 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab5-cp:
+total 16
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 ..
+-rw-------  1 skuo004 classes    5 Feb 24 05:27 grade
+-rw-------  1 skuo004 classes 2887 Feb 24 05:27 README.md
+-rw-------  1 skuo004 classes 2698 Feb 24 05:27 Timer.h
+
+./ucr-cs100/assignments/lab/lab6-signal:
+total 12
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 ..
+-rw-------  1 skuo004 classes    5 Feb 24 05:27 grade
+-rw-------  1 skuo004 classes 1121 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab7-rm:
+total 12
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 ..
+-rw-------  1 skuo004 classes    5 Feb 24 05:27 grade
+-rw-------  1 skuo004 classes  740 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/lab/lab8-spam:
+total 12
+drwx------  2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 11 skuo004 classes 4096 Feb 24 05:27 ..
+-rw-------  1 skuo004 classes    5 Feb 24 05:27 grade
+-rw-------  1 skuo004 classes 2327 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/linux:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    6 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 2075 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/quiz:
+total 36
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 quiz0
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 quiz1
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 quiz2
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 quiz3
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 quiz4
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 quiz5
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 quiz6
+
+./ucr-cs100/assignments/quiz/quiz0:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    5 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 2154 Feb 24 05:27 unixhistory.tex
+
+./ucr-cs100/assignments/quiz/quiz1:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    5 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 2080 Feb 24 05:27 quiz1-gitunix.tex
+
+./ucr-cs100/assignments/quiz/quiz2:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    5 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes  911 Feb 24 05:27 README.md
+
+./ucr-cs100/assignments/quiz/quiz3:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    6 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 1167 Feb 24 05:27 sizeof.tex
+
+./ucr-cs100/assignments/quiz/quiz4:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 1808 Feb 24 05:27 bitwise.tex
+-rw------- 1 skuo004 classes    7 Feb 24 05:27 grade
+
+./ucr-cs100/assignments/quiz/quiz5:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    5 Feb 24 05:27 grade
+-rw------- 1 skuo004 classes 1746 Feb 24 05:27 regex.tex
+
+./ucr-cs100/assignments/quiz/quiz6:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 9801 Feb 24 05:27 abet.docx
+
+./ucr-cs100/.git:
+total 72
+drwx------ 8 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes  4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 branches
+-rw------- 1 skuo004 classes   276 Feb 24 05:27 config
+-rw------- 1 skuo004 classes    73 Feb 24 05:27 description
+-rw------- 1 skuo004 classes    27 Feb 24 05:27 HEAD
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 hooks
+-rw------- 1 skuo004 classes 26224 Feb 24 05:27 index
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 info
+drwx------ 3 skuo004 classes  4096 Feb 24 05:27 logs
+drwx------ 4 skuo004 classes  4096 Feb 24 05:27 objects
+-rw------- 1 skuo004 classes   348 Feb 24 05:27 packed-refs
+drwx------ 5 skuo004 classes  4096 Feb 24 05:27 refs
+
+./ucr-cs100/.git/branches:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+
+./ucr-cs100/.git/hooks:
+total 48
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+-rwx------ 1 skuo004 classes  452 Feb 24 05:27 applypatch-msg.sample
+-rwx------ 1 skuo004 classes  896 Feb 24 05:27 commit-msg.sample
+-rwx------ 1 skuo004 classes  189 Feb 24 05:27 post-update.sample
+-rwx------ 1 skuo004 classes  398 Feb 24 05:27 pre-applypatch.sample
+-rwx------ 1 skuo004 classes 1635 Feb 24 05:27 pre-commit.sample
+-rwx------ 1 skuo004 classes 1239 Feb 24 05:27 prepare-commit-msg.sample
+-rwx------ 1 skuo004 classes 1348 Feb 24 05:27 pre-push.sample
+-rwx------ 1 skuo004 classes 4951 Feb 24 05:27 pre-rebase.sample
+-rwx------ 1 skuo004 classes 3611 Feb 24 05:27 update.sample
+
+./ucr-cs100/.git/info:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  240 Feb 24 05:27 exclude
+
+./ucr-cs100/.git/logs:
+total 16
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  181 Feb 24 05:27 HEAD
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 refs
+
+./ucr-cs100/.git/logs/refs:
+total 16
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 heads
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 remotes
+
+./ucr-cs100/.git/logs/refs/heads:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  181 Feb 24 05:27 2015winter
+
+./ucr-cs100/.git/logs/refs/remotes:
+total 12
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 origin
+
+./ucr-cs100/.git/logs/refs/remotes/origin:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  181 Feb 24 05:27 HEAD
+
+./ucr-cs100/.git/objects:
+total 16
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 info
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 pack
+
+./ucr-cs100/.git/objects/info:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 ..
+
+./ucr-cs100/.git/objects/pack:
+total 15976
+drwx------ 2 skuo004 classes     4096 Feb 24 05:27 .
+drwx------ 4 skuo004 classes     4096 Feb 24 05:27 ..
+-r-------- 1 skuo004 classes   123852 Feb 24 05:27 pack-c3408d671bb89d56eeff1691671205186607629f.idx
+-r-------- 1 skuo004 classes 16202619 Feb 24 05:27 pack-c3408d671bb89d56eeff1691671205186607629f.pack
+
+./ucr-cs100/.git/refs:
+total 20
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 heads
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 remotes
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 tags
+
+./ucr-cs100/.git/refs/heads:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   41 Feb 24 05:27 2015winter
+
+./ucr-cs100/.git/refs/remotes:
+total 12
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 origin
+
+./ucr-cs100/.git/refs/remotes/origin:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   36 Feb 24 05:27 HEAD
+
+./ucr-cs100/.git/refs/tags:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+
+./ucr-cs100/gitlearn:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+
+./ucr-cs100/lecture-notes:
+total 1480
+drwx------ 3 skuo004 classes   4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes   4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes    355 Feb 24 05:27 bitwise-quiz.cpp
+-rw------- 1 skuo004 classes    102 Feb 24 05:27 check.cpp
+-rw------- 1 skuo004 classes    522 Feb 24 05:27 codereview.c
+-rw------- 1 skuo004 classes    262 Feb 24 05:27 codereview-errors
+-rw------- 1 skuo004 classes    597 Feb 24 05:27 exec.cpp
+-rw------- 1 skuo004 classes   1922 Feb 24 05:27 file1
+-rw------- 1 skuo004 classes   1940 Feb 24 05:27 file2
+-rw------- 1 skuo004 classes    493 Feb 24 05:27 fileio.cpp
+-rw------- 1 skuo004 classes    535 Feb 24 05:27 fptr.cpp
+drwx------ 2 skuo004 classes   4096 Feb 24 05:27 gittest
+-rw------- 1 skuo004 classes    114 Feb 24 05:27 hw0testcases
+-rw------- 1 skuo004 classes    909 Feb 24 05:27 iotest.cpp
+-rw------- 1 skuo004 classes    597 Feb 24 05:27 lecture1
+-rw------- 1 skuo004 classes 331776 Feb 24 05:27 lecture10
+-rw------- 1 skuo004 classes  64158 Feb 24 05:27 lecture2
+-rw------- 1 skuo004 classes 344064 Feb 24 05:27 lecture4
+-rw------- 1 skuo004 classes 229376 Feb 24 05:27 lecture5
+-rw------- 1 skuo004 classes 158491 Feb 24 05:27 lecture7
+-rw------- 1 skuo004 classes  45678 Feb 24 05:27 lecture8
+-rw------- 1 skuo004 classes 213483 Feb 24 05:27 lecture9
+-rw------- 1 skuo004 classes    257 Feb 24 05:27 ls.cpp
+-rw------- 1 skuo004 classes    750 Feb 24 05:27 macros.cpp
+-rw------- 1 skuo004 classes    423 Feb 24 05:27 map2.cpp
+-rw------- 1 skuo004 classes    274 Feb 24 05:27 pipe2.cpp
+-rw------- 1 skuo004 classes    211 Feb 24 05:27 segfault.cpp
+-rw------- 1 skuo004 classes    440 Feb 24 05:27 signal.cpp
+-rw------- 1 skuo004 classes    478 Feb 24 05:27 stat2.cpp
+-rw------- 1 skuo004 classes    118 Feb 24 05:27 tmp
+-rw------- 1 skuo004 classes    272 Feb 24 05:27 valgrind.cpp
+-rw------- 1 skuo004 classes     29 Feb 24 05:27 willfail.cpp
+-rw------- 1 skuo004 classes     29 Feb 24 05:27 willitfail.cpp
+
+./ucr-cs100/lecture-notes/gittest:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 ..
+
+./ucr-cs100/people:
+total 16
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 instructors
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 students
+
+./ucr-cs100/people/instructors:
+total 32
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 1140 Feb 24 05:27 benavidz@cs.ucr.edu
+-rw------- 1 skuo004 classes 1134 Feb 24 05:27 busracelikkaya@gmail.com
+-rw------- 1 skuo004 classes 5705 Feb 24 05:27 mike@izbicki.me
+-rw------- 1 skuo004 classes  182 Feb 24 05:27 README.md
+-rw------- 1 skuo004 classes 1134 Feb 24 05:27 tkim049@cs.ucr.edu
+
+./ucr-cs100/people/students:
+total 200
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  162 Feb 24 05:27 aben001
+-rw------- 1 skuo004 classes  215 Feb 24 05:27 amart088
+-rw------- 1 skuo004 classes  165 Feb 24 05:27 athio001
+-rw------- 1 skuo004 classes  177 Feb 24 05:27 ccali003
+-rw------- 1 skuo004 classes  194 Feb 24 05:27 cfan002
+-rw------- 1 skuo004 classes  179 Feb 24 05:27 cibar007
+-rw------- 1 skuo004 classes  161 Feb 24 05:27 cyang032
+-rw------- 1 skuo004 classes  196 Feb 24 05:27 dhand002
+-rw------- 1 skuo004 classes  381 Feb 24 05:27 dshe001
+-rw------- 1 skuo004 classes  182 Feb 24 05:27 eneva002
+-rw------- 1 skuo004 classes  178 Feb 24 05:27 hdorn001
+-rw------- 1 skuo004 classes  170 Feb 24 05:27 ikim025
+-rw------- 1 skuo004 classes  218 Feb 24 05:27 jcand003
+-rw------- 1 skuo004 classes  199 Feb 24 05:27 jduga002
+-rw------- 1 skuo004 classes  160 Feb 24 05:27 jfu006
+-rw------- 1 skuo004 classes  187 Feb 24 05:27 jkinc002
+-rw------- 1 skuo004 classes  162 Feb 24 05:27 jlu019
+-rw------- 1 skuo004 classes  410 Feb 24 05:27 jng017
+-rw------- 1 skuo004 classes  180 Feb 24 05:27 jsun031
+-rw------- 1 skuo004 classes  452 Feb 24 05:27 jwang096
+-rw------- 1 skuo004 classes  485 Feb 24 05:27 jweyr001
+-rw------- 1 skuo004 classes  340 Feb 24 05:27 kkamg001
+-rw------- 1 skuo004 classes  182 Feb 24 05:27 kkimb003
+-rw------- 1 skuo004 classes  167 Feb 24 05:27 ljomo001
+-rw------- 1 skuo004 classes  210 Feb 24 05:27 makba002
+-rw------- 1 skuo004 classes  165 Feb 24 05:27 mchu011
+-rw------- 1 skuo004 classes  366 Feb 24 05:27 mevan003
+-rw------- 1 skuo004 classes  434 Feb 24 05:27 mmore019
+-rw------- 1 skuo004 classes  187 Feb 24 05:27 monti004
+-rw------- 1 skuo004 classes  195 Feb 24 05:27 muy003
+-rw------- 1 skuo004 classes  213 Feb 24 05:27 nfarh002
+-rw------- 1 skuo004 classes  170 Feb 24 05:27 rfeng001
+-rw------- 1 skuo004 classes  466 Feb 24 05:27 rpasi001
+-rw------- 1 skuo004 classes  387 Feb 24 05:27 ryama008
+-rw------- 1 skuo004 classes  188 Feb 24 05:27 santo003
+-rw------- 1 skuo004 classes  188 Feb 24 05:27 sbala003
+-rw------- 1 skuo004 classes  421 Feb 24 05:27 scohe001
+-rw------- 1 skuo004 classes  449 Feb 24 05:27 skuo004
+-rw------- 1 skuo004 classes  463 Feb 24 05:27 slee208
+-rw------- 1 skuo004 classes  219 Feb 24 05:27 tzick002
+-rw------- 1 skuo004 classes  194 Feb 24 05:27 vchio001
+-rw------- 1 skuo004 classes  436 Feb 24 05:27 vgarc018
+-rw------- 1 skuo004 classes  175 Feb 24 05:27 vhall001
+-rw------- 1 skuo004 classes  193 Feb 24 05:27 wfink001
+-rw------- 1 skuo004 classes  178 Feb 24 05:27 wlee030
+-rw------- 1 skuo004 classes  184 Feb 24 05:27 yli066
+-rw------- 1 skuo004 classes  166 Feb 24 05:27 yliu075
+-rw------- 1 skuo004 classes  174 Feb 24 05:27 yliu127
+
+./ucr-cs100/textbook:
+total 36
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 assignment-help
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 bestpractices
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 C++
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 casestudies
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 cheatsheets
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 tools
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 using-bash
+
+./ucr-cs100/textbook/assignment-help:
+total 28
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 bitwise-ops
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 macros
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 output-formatting-in-c++
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 strtok
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 syscalls
+
+./ucr-cs100/textbook/assignment-help/bitwise-ops:
+total 24
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 15078 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/assignment-help/macros:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 8809 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/assignment-help/output-formatting-in-c++:
+total 24
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 1845 Feb 24 05:27 ANSIfontUtils.h
+-rw------- 1 skuo004 classes 8300 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/assignment-help/strtok:
+total 32
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 23372 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/assignment-help/syscalls:
+total 48
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 13267 Feb 24 05:27 exec.md
+-rw------- 1 skuo004 classes  3780 Feb 24 05:27 getinfo.md
+-rw------- 1 skuo004 classes  8366 Feb 24 05:27 io.md
+-rw------- 1 skuo004 classes  5333 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/bestpractices:
+total 20
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 TestDrivenDevelopment
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 WritingGoodTestCases
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 WritingREADMEs
+
+./ucr-cs100/textbook/bestpractices/TestDrivenDevelopment:
+total 28
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 8473 Feb 24 05:27 README.md
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 src
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 tests
+
+./ucr-cs100/textbook/bestpractices/TestDrivenDevelopment/src:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  274 Feb 24 05:27 string_tok.cpp
+
+./ucr-cs100/textbook/bestpractices/TestDrivenDevelopment/tests:
+total 16
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 4 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  556 Feb 24 05:27 test_project_euler.cpp
+-rw------- 1 skuo004 classes  776 Feb 24 05:27 test_string_tok.cpp
+
+./ucr-cs100/textbook/bestpractices/WritingGoodTestCases:
+total 84
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 48261 Feb 24 05:27 hw0-example.ods
+-rw------- 1 skuo004 classes  9906 Feb 24 05:27 README.md
+-rw------- 1 skuo004 classes 16148 Feb 24 05:27 template.ods
+
+./ucr-cs100/textbook/bestpractices/WritingREADMEs:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 4571 Feb 24 05:27 Markdown.md
+-rw------- 1 skuo004 classes 2170 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/C++:
+total 28
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 boost
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 C++11features
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 DataStructures
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 pseudocode
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 templates
+
+./ucr-cs100/textbook/C++/boost:
+total 16
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 8048 Feb 24 05:27 containers-and-tribools.md
+
+./ucr-cs100/textbook/C++/C++11features:
+total 24
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 13131 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/C++/DataStructures:
+total 36
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 list
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 map
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 queue
+-rw------- 1 skuo004 classes 9743 Feb 24 05:27 README.md
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 stack
+
+./ucr-cs100/textbook/C++/DataStructures/list:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  362 Feb 24 05:27 list.cpp
+
+./ucr-cs100/textbook/C++/DataStructures/map:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 2007 Feb 24 05:27 map2.cpp
+-rw------- 1 skuo004 classes 2192 Feb 24 05:27 map.cpp
+-rw------- 1 skuo004 classes  180 Feb 24 05:27 winners
+
+./ucr-cs100/textbook/C++/DataStructures/queue:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  348 Feb 24 05:27 queue.cpp
+
+./ucr-cs100/textbook/C++/DataStructures/stack:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 6 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  452 Feb 24 05:27 stack.cpp
+
+./ucr-cs100/textbook/C++/pseudocode:
+total 32
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   279 Feb 24 05:27 Makefile
+-rw------- 1 skuo004 classes 12209 Feb 24 05:27 README.md
+-rw------- 1 skuo004 classes  5016 Feb 24 05:27 simple_model.cxx
+
+./ucr-cs100/textbook/C++/templates:
+total 28
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 17260 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/casestudies:
+total 12
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 ioccc-hamano
+
+./ucr-cs100/textbook/casestudies/ioccc-hamano:
+total 72
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  5339 Feb 24 05:27 myhamano.c
+-rw------- 1 skuo004 classes 12941 Feb 24 05:27 outputORIG.pdf
+-rw------- 1 skuo004 classes 12760 Feb 24 05:27 output.pdf
+-rw------- 1 skuo004 classes 20722 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/cheatsheets:
+total 164
+drwx------ 2 skuo004 classes   4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes   4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  10556 Feb 24 05:27 gdb-cheatsheet.md
+-rw------- 1 skuo004 classes   7563 Feb 24 05:27 git-cheatsheet.md
+-rw------- 1 skuo004 classes 119520 Feb 24 05:27 vim-cheatsheet.pdf
+-rw------- 1 skuo004 classes  10339 Feb 24 05:27 vim-cheatsheet.tex
+
+./ucr-cs100/textbook/tools:
+total 32
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 cppcheck
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 gdb
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 git
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 Makefiles
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 valgrind
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 xmonad
+
+./ucr-cs100/textbook/tools/cppcheck:
+total 20
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 12167 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/gdb:
+total 24
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 ex1
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 ex2
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 ex3
+-rw------- 1 skuo004 classes 1889 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/gdb/ex1:
+total 24
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  253 Feb 24 05:27 ex1.cpp
+-rw------- 1 skuo004 classes 9862 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/gdb/ex2:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  303 Feb 24 05:27 ex2.cpp
+-rw------- 1 skuo004 classes 6876 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/gdb/ex3:
+total 16
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  230 Feb 24 05:27 ex3.cpp
+-rw------- 1 skuo004 classes 1262 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/git:
+total 20
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 advanced-git
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 LargeFilesInGitRepo
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 managingForkedRepo
+
+./ucr-cs100/textbook/tools/git/advanced-git:
+total 20
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 10776 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/git/LargeFilesInGitRepo:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 1670 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/git/managingForkedRepo:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 5 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 8831 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/Makefiles:
+total 40
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 example1
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 example2
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 example3
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 example4
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 example5
+-rw------- 1 skuo004 classes 8348 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/Makefiles/example1:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   60 Feb 24 05:27 hello.c
+-rw------- 1 skuo004 classes   28 Feb 24 05:27 Makefile
+
+./ucr-cs100/textbook/tools/Makefiles/example2:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   53 Feb 24 05:27 file.c
+-rw------- 1 skuo004 classes   12 Feb 24 05:27 file.h
+-rw------- 1 skuo004 classes   42 Feb 24 05:27 main.c
+-rw------- 1 skuo004 classes  163 Feb 24 05:27 Makefile
+
+./ucr-cs100/textbook/tools/Makefiles/example3:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   53 Feb 24 05:27 file.c
+-rw------- 1 skuo004 classes   12 Feb 24 05:27 file.h
+-rw------- 1 skuo004 classes   42 Feb 24 05:27 main.c
+-rw------- 1 skuo004 classes  186 Feb 24 05:27 Makefile
+
+./ucr-cs100/textbook/tools/Makefiles/example4:
+total 12
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   53 Feb 24 05:27 file.c
+-rw------- 1 skuo004 classes   12 Feb 24 05:27 file.h
+-rw------- 1 skuo004 classes   42 Feb 24 05:27 main.c
+-rw------- 1 skuo004 classes  177 Feb 24 05:27 Makefile
+
+./ucr-cs100/textbook/tools/Makefiles/example5:
+total 16
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 7 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  282 Feb 24 05:27 Makefile
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 src
+
+./ucr-cs100/textbook/tools/Makefiles/example5/src:
+total 8
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   53 Feb 24 05:27 file.c
+-rw------- 1 skuo004 classes   12 Feb 24 05:27 file.h
+-rw------- 1 skuo004 classes   42 Feb 24 05:27 main.c
+
+./ucr-cs100/textbook/tools/valgrind:
+total 32
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes   122 Feb 24 05:27 example1.cpp
+-rw------- 1 skuo004 classes   563 Feb 24 05:27 example2.cpp
+-rw------- 1 skuo004 classes 14429 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/xmonad:
+total 20
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 8 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 images
+-rw------- 1 skuo004 classes 6157 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/tools/xmonad/images:
+total 348
+drwx------ 2 skuo004 classes   4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes   4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 130823 Feb 24 05:27 blanks.png
+-rw------- 1 skuo004 classes  13147 Feb 24 05:27 dmenus.png
+-rw------- 1 skuo004 classes  57956 Feb 24 05:27 login.png
+-rw------- 1 skuo004 classes  11805 Feb 24 05:27 term2bss.png
+-rw------- 1 skuo004 classes   7819 Feb 24 05:27 term2s.png
+-rw------- 1 skuo004 classes  12064 Feb 24 05:27 term2ws.png
+-rw------- 1 skuo004 classes  12733 Feb 24 05:27 term3s.png
+-rw------- 1 skuo004 classes   7247 Feb 24 05:27 terms.png
+-rw------- 1 skuo004 classes  72079 Feb 24 05:27 xmes.png
+
+./ucr-cs100/textbook/using-bash:
+total 36
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 bashrc
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 file-permission
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 nctutorial
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 regex
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 sed
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 shell-scripts
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 shell-tricks
+
+./ucr-cs100/textbook/using-bash/bashrc:
+total 28
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  3952 Feb 24 05:27 .bashrc
+-rw------- 1 skuo004 classes 12908 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/using-bash/file-permission:
+total 24
+drwx------ 3 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 image
+-rw------- 1 skuo004 classes 8360 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/using-bash/file-permission/image:
+total 196
+drwx------ 2 skuo004 classes   4096 Feb 24 05:27 .
+drwx------ 3 skuo004 classes   4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  19217 Feb 24 05:27 FS-layout.png
+-rw------- 1 skuo004 classes   9157 Feb 24 05:27 permissions_diagram.gif
+-rw------- 1 skuo004 classes 135974 Feb 24 05:27 Screenshot1.png
+-rw------- 1 skuo004 classes  15810 Feb 24 05:27 Screenshot.png
+
+./ucr-cs100/textbook/using-bash/nctutorial:
+total 24
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 14393 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/using-bash/regex:
+total 20
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 11090 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/using-bash/sed:
+total 24
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 14747 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/using-bash/shell-scripts:
+total 20
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 8664 Feb 24 05:27 README.md
+
+./ucr-cs100/textbook/using-bash/shell-tricks:
+total 28
+drwx------ 2 skuo004 classes  4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes  4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes 17058 Feb 24 05:27 README.md
+
+./ucr-cs100/videos:
+total 24
+drwx------ 2 skuo004 classes 4096 Feb 24 05:27 .
+drwx------ 9 skuo004 classes 4096 Feb 24 05:27 ..
+-rw------- 1 skuo004 classes  916 Feb 24 05:27 syscalls-cartoon.md
+-rw------- 1 skuo004 classes 2238 Feb 24 05:27 syscalls-detailed.md
+-rw------- 1 skuo004 classes 4339 Feb 24 05:27 vim.md
+skuo004@hammer:/class/classes/skuo004/cs100/test $ true && fa  echo true
+true
+skuo004@hammer:/class/classes/skuo004/cs100/test $ true && ech           false && ecl ho false
+skuo004@hammer:/class/classes/skuo004/cs100/test $ true || echo false
+skuo004@hammer:/class/classes/skuo004/cs100/test $ true |      false || echo true
+true
+skuo004@hammer:/class/classes/skuo004/cs100/test $ true;echo true
+true
+skuo004@hammer:/class/classes/skuo004/cs100/test $ falsee ;echo true
+true
+skuo004@hammer:/class/classes/skuo004/cs100/test $ echo true    a;echo;b  b  b; e  echo c; false;ls;cd ..;pwd;fa  true;false
+a
+b
+c
+chdir.cpp	       test_18.txt  test_33.txt  test_49.txt  test_64.txt
+chdirtest	       test_19.txt  test_34.txt  test_4.txt   test_65.txt
+gitlearn	       test_1.txt   test_35.txt  test_50.txt  test_66.txt
+infloop.cpp	       test_20.txt  test_36.txt  test_51.txt  test_67.txt
+infloop.o	       test_21.txt  test_37.txt  test_52.txt  test_68.txt
+redirect	       test_22.txt  test_38.txt  test_53.txt  test_69.txt
+rshell		       test_23.txt  test_39.txt  test_54.txt  test_6.txt
+stringpopbacktest.cpp  test_24.txt  test_3.txt	 test_55.txt  test_7.txt
+stringtest.o	       test_25.txt  test_40.txt  test_56.txt  test_8.txt
+test_10.txt	       test_26.txt  test_41.txt  test_57.txt  test_9.txt
+test_11.txt	       test_27.txt  test_42.txt  test_58.txt  testfile
+test_12.txt	       test_28.txt  test_43.txt  test_59.txt  testsubdir
+test_13.txt	       test_29.txt  test_44.txt  test_5.txt   ucr-cs100
+test_14.txt	       test_2.txt   test_45.txt  test_60.txt
+test_15.txt	       test_30.txt  test_46.txt  test_61.txt
+test_16.txt	       test_31.txt  test_47.txt  test_62.txt
+test_17.txt	       test_32.txt  test_48.txt  test_63.txt
+/class/classes/skuo004/cs100
+skuo004@hammer:/class/classes/skuo004/cs100 $ echo true&&echo false||echo f false
+true
+false
+skuo004@hammer:/class/classes/skuo004/cs100 $ echo  o ho false || echo true || echo       && echo nope
+false
+skuo004@hammer:/class/classes/skuo004/cs100 $ ls-  -l||cat     
+total 40
+drwx------ 3 skuo004 classes 4096 Jan 23 20:19 hw0
+drwx------ 3 skuo004 classes 4096 Feb  2 11:09 lab3
+drwx------ 2 skuo004 classes 4096 Feb  2 13:43 lab4
+drwx------ 4 skuo004 classes 4096 Feb  9 13:55 lab5
+drwx------ 2 skuo004 classes 4096 Mar  8 22:33 lab6
+drwx------ 5 skuo004 classes 4096 Mar  2 14:19 lab7
+drwx------ 2 skuo004 classes 4096 Mar  9 13:44 lab8
+drwx------ 3 skuo004 classes 4096 Feb  8 15:36 rshell
+drwx------ 7 skuo004 classes 4096 Mar  8 23:24 test
+drwx------ 9 skuo004 classes 4096 Feb 25 14:21 ucr-cs100
+skuo004@hammer:/class/classes/skuo004/cs100 $ ls    cd uc  rshell/rshell
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ca  ls -l   a  ||cat asdft.xt ^[[D                   && l  cat - asd	f               ls -l  -a  &&cat t asdt f.txt | &&    echo hollo
+.	  echo	       Makefile		      Makefile.REMOTE.28570  test.txt
+..	  fixlist.txt  Makefile.BACKUP.28570  README.md
+asdf.txt  .git	       Makefile.BASE.28570    src
+bin	  LICENSE      Makefile.LOCAL.28570   tests
+asdf
+hollo
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ exit
+==48693== 
+==48693== HEAP SUMMARY:
+==48693==     in use at exit: 71 bytes in 2 blocks
+==48693==   total heap usage: 694 allocs, 692 frees, 47,707 bytes allocated
+==48693== 
+==48693== LEAK SUMMARY:
+==48693==    definitely lost: 0 bytes in 0 blocks
+==48693==    indirectly lost: 0 bytes in 0 blocks
+==48693==      possibly lost: 71 bytes in 2 blocks
+==48693==    still reachable: 0 bytes in 0 blocks
+==48693==         suppressed: 0 bytes in 0 blocks
+==48693== Rerun with --leak-check=full to see details of leaked memory
+==48693== 
+==48693== For counts of detected and suppressed errors, rerun with: -v
+==48693== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+skuo004@hammer:/class/classes/skuo004/cs100/test $ exit
+==48518== 
+==48518== HEAP SUMMARY:
+==48518==     in use at exit: 71 bytes in 2 blocks
+==48518==   total heap usage: 214 allocs, 212 frees, 30,639 bytes allocated
+==48518== 
+==48518== LEAK SUMMARY:
+==48518==    definitely lost: 0 bytes in 0 blocks
+==48518==    indirectly lost: 0 bytes in 0 blocks
+==48518==      possibly lost: 71 bytes in 2 blocks
+==48518==    still reachable: 0 bytes in 0 blocks
+==48518==         suppressed: 0 bytes in 0 blocks
+==48518== Rerun with --leak-check=full to see details of leaked memory
+==48518== 
+==48518== For counts of detected and suppressed errors, rerun with: -v
+==48518== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (hw3) [0;36m$[0m bin/rshell
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ exit -don'tex    texit
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (hw3) [0;36m$[0m bin/rshell
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ls -l e exit
+ls: cannot access exit: No such file or directory
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ks  s ls -l; e  exit
+total 60
+-rwx------ 1 skuo004 classes     5 Mar  5 09:47 asdf.txt
+drwx------ 2 skuo004 classes  4096 Mar  9 14:07 bin
+-rwx------ 1 skuo004 classes     5 Mar  9 04:00 echo
+-rw------- 1 skuo004 classes   106 Mar  5 09:52 fixlist.txt
+-rw------- 1 skuo004 classes 18025 Feb  8 15:36 LICENSE
+-rw------- 1 skuo004 classes   282 Mar  8 22:42 Makefile
+-rw------- 1 skuo004 classes   496 Mar  6 14:58 Makefile.BACKUP.28570
+-rw------- 1 skuo004 classes   135 Mar  6 14:59 Makefile.BASE.28570
+-rw------- 1 skuo004 classes   208 Mar  6 14:59 Makefile.LOCAL.28570
+-rw------- 1 skuo004 classes   250 Mar  6 14:59 Makefile.REMOTE.28570
+-rw------- 1 skuo004 classes  1659 Mar  9 05:09 README.md
+drwx------ 2 skuo004 classes  4096 Mar  9 14:44 src
+drwx------ 2 skuo004 classes  4096 Mar  9 15:38 tests
+-rw------- 1 skuo004 classes    56 Mar  5 10:50 test.txt
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (hw3) [0;36m$[0m bin/rshellvalgrind bin/rshell[9Pbin/rshell
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ lks  s   && exit ||   ca  echo hello
+asdf.txt  fixlist.txt  Makefile.BACKUP.28570  Makefile.REMOTE.28570  tests
+bin	  LICENSE      Makefile.BASE.28570    README.md		     test.txt
+echo	  Makefile     Makefile.LOCAL.28570   src
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (hw3) [0;36m$[0m bin/rshell
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ls  ls exit || echo hello&&exit
+ls: cannot access exit: No such file or directory
+hello
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (hw3) [0;36m$[0m l[Kbin/rshell
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ls -l #t  this is a comment
+total 60
+-rwx------ 1 skuo004 classes     5 Mar  5 09:47 asdf.txt
+drwx------ 2 skuo004 classes  4096 Mar  9 14:07 bin
+-rwx------ 1 skuo004 classes     5 Mar  9 04:00 echo
+-rw------- 1 skuo004 classes   106 Mar  5 09:52 fixlist.txt
+-rw------- 1 skuo004 classes 18025 Feb  8 15:36 LICENSE
+-rw------- 1 skuo004 classes   282 Mar  8 22:42 Makefile
+-rw------- 1 skuo004 classes   496 Mar  6 14:58 Makefile.BACKUP.28570
+-rw------- 1 skuo004 classes   135 Mar  6 14:59 Makefile.BASE.28570
+-rw------- 1 skuo004 classes   208 Mar  6 14:59 Makefile.LOCAL.28570
+-rw------- 1 skuo004 classes   250 Mar  6 14:59 Makefile.REMOTE.28570
+-rw------- 1 skuo004 classes  1659 Mar  9 05:09 README.md
+drwx------ 2 skuo004 classes  4096 Mar  9 14:44 src
+drwx------ 2 skuo004 classes  4096 Mar  9 15:38 tests
+-rw------- 1 skuo004 classes    56 Mar  5 10:50 test.txt
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ls  #commenting huwehrwherewuhrwhrwe
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ls-l   -l#commenting
+total 60
+-rwx------ 1 skuo004 classes     5 Mar  5 09:47 asdf.txt
+drwx------ 2 skuo004 classes  4096 Mar  9 14:07 bin
+-rwx------ 1 skuo004 classes     5 Mar  9 04:00 echo
+-rw------- 1 skuo004 classes   106 Mar  5 09:52 fixlist.txt
+-rw------- 1 skuo004 classes 18025 Feb  8 15:36 LICENSE
+-rw------- 1 skuo004 classes   282 Mar  8 22:42 Makefile
+-rw------- 1 skuo004 classes   496 Mar  6 14:58 Makefile.BACKUP.28570
+-rw------- 1 skuo004 classes   135 Mar  6 14:59 Makefile.BASE.28570
+-rw------- 1 skuo004 classes   208 Mar  6 14:59 Makefile.LOCAL.28570
+-rw------- 1 skuo004 classes   250 Mar  6 14:59 Makefile.REMOTE.28570
+-rw------- 1 skuo004 classes  1659 Mar  9 05:09 README.md
+drwx------ 2 skuo004 classes  4096 Mar  9 14:44 src
+drwx------ 2 skuo004 classes  4096 Mar  9 15:38 tests
+-rw------- 1 skuo004 classes    56 Mar  5 10:50 test.txt
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ #co  ls -l
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ ls; #;echo nope
+asdf.txt  fixlist.txt  Makefile.BACKUP.28570  Makefile.REMOTE.28570  tests
+bin	  LICENSE      Makefile.BASE.28570    README.md		     test.txt
+echo	  Makefile     Makefile.LOCAL.28570   src
+skuo004@hammer:/class/classes/skuo004/cs100/rshell/rshell $ : exit
+[s%%%%%%%%%%[u[0;32mskuo004[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell/rshell[0;95m (hw3) [0;36m$[0m exit
+exit
+~
+skuo004@hammer $ exit
+exit
+
+Script done on Mon 09 Mar 2015 03:55:53 PM PDT
