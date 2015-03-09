@@ -51,36 +51,7 @@ void sighandler(int i) // FIXME: do something crazy
 	}
 }
 
-void searchforpath(string cmdname, char **cmdWithArgs) // might as well make cmdname a string, since I'm converting it to a string here, then converting it BACK to a cstring. Do it all here
-{
-	vector<string> userpaths;
-	string env = getenv("PATH"); // returns the user's PATH environment variable, separated by colons, terminated by '.'
-	
-	typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
-	boost::char_separator<char> colonsep(":"); // $PATH s are separated by colons
-	tokenizer tokens(env, colonsep);
-	for (tokenizer::iterator tok_iter = tokens.begin(); tok_iter != tokens.end(); ++tok_iter)
-	{
-		userpaths.push_back(*tok_iter);
-	}
-	
-	//path is terminated in a '.' so I need to find and delete this thing
-	
-	if(userpaths.back().back() == '.')
-	{
-		userpaths.back().pop_back(); // requires c++11, will need to modify make
-	}
-	
-	string currentPath;
-	for (unsigned i = 0; i < userpaths.size(); ++i)
-	{
-		currentPath = userpaths.at(i) + '/' + cmdname;
-		execv(currentPath.c_str(), cmdWithArgs); //most likely we're gonna get a bunch of fails so we only
-	}
-	perror("execv"); // perror if ALL fail
-}
-
-string mycwd()
+string mycwd() //like cwd but returns a string instead
 {
 	char buffer[BUFSIZ];
 	string ret = getcwd(buffer, BUFSIZ);
@@ -90,6 +61,63 @@ string mycwd()
 	}
 	
 	return ret;
+}
+
+void searchforpath(string cmdname, char **cmdWithArgs) // might as well make cmdname a string, since I'm converting it to a string here, then converting it BACK to a cstring. Do it all here
+{
+	if (cmdname.front() == '.') // currentdir
+	{
+		string newpath = mycwd();
+		string updir = ".."; //updir
+		if(cmdname.compare(0,updir.length(),updir) == 0)
+		{
+			while(newpath.back() != '/')
+			{
+				newpath.pop_back();
+			}
+			newpath += cmdname.substr(2);
+			//cout << "newpath: " << newpath <<endl;
+		}
+		else
+		{
+			newpath += cmdname.substr(1);
+		}
+		if (execv(newpath.c_str(), cmdWithArgs) == -1)
+		{
+			perror("execv");
+			return;
+		}
+	}
+	else
+	{
+		vector<string> userpaths;
+		string env = getenv("PATH"); // returns the user's PATH environment variable, separated by colons, terminated by '.'
+		
+		typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+		boost::char_separator<char> colonsep(":"); // $PATH s are separated by colons
+		tokenizer tokens(env, colonsep);
+		for (tokenizer::iterator tok_iter = tokens.begin(); tok_iter != tokens.end(); ++tok_iter)
+		{
+			userpaths.push_back(*tok_iter);
+		}
+		
+		//path is terminated in a '.' so I need to find and delete this thing
+		
+		if(userpaths.back().back() == '.')
+		{
+			userpaths.back().pop_back(); // requires c++11, will need to modify make
+		}
+		
+		userpaths.push_back(mycwd()); //add current dir
+		
+		string currentPath;
+		for (unsigned i = 0; i < userpaths.size(); ++i)
+		{
+			currentPath = userpaths.at(i) + '/' + cmdname;
+			execv(currentPath.c_str(), cmdWithArgs); //most likely we're gonna get a bunch of fails so we only
+		}
+		perror("execv"); // perror if ALL fail
+	}
 }
 
 int output_redir(vector<vector<string> > &v, vector<int> &q, int index)
@@ -595,7 +623,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 							newpath.pop_back();
 						}
 						newpath += v[i][1].substr(2);
-						cout << "newpath: " << newpath <<endl;
+						//cout << "newpath: " << newpath <<endl;
 					}
 					else
 					{
@@ -844,7 +872,7 @@ int main()
 	{
 		mainpid = getpid(); //identify this process as our main, so we can't interrupt or pause it
 		string input;
-		cout << "$ ";
+		cout << mycwd() << " $ ";
 		getline(cin,input);
 		if (input == "exit")
 		{
