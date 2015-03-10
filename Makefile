@@ -1,4 +1,4 @@
-FLAGS = -W -Wall -ansi -pedantic -std=c++11 #-Werror
+FLAGS = -W -Wall -Werror -ansi -pedantic -std=c++11
 
 all: rshell ls | bin
 #all: rshell ls cp | bin

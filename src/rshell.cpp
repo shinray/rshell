@@ -593,6 +593,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 					perror("chdir(HOME)");
 					return;
 				}
+				continue;
 				// cerr << "Error: no target directory specified." << endl;
 			}
 			else
@@ -604,6 +605,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 						perror("chdir");
 						return;
 					}
+					continue;
 				}
 				else if (v[i][1].front() == '~') // homedir
 				{
@@ -613,6 +615,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 						perror("chdir(HOME)");
 						return;
 					}
+					continue;
 				}
 				else if (v[i][1].front() == '.') // currentdir
 				{
@@ -637,6 +640,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 						perror("chdir");
 						return;
 					}
+					continue;
 				}
 				else //relative path
 				{
@@ -646,6 +650,7 @@ void execute(vector<vector<string> > &v, vector<int> &q)
 						perror("chdir");
 						return;
 					}
+					continue;
 				}
 				
 			}
